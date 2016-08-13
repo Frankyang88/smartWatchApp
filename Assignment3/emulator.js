@@ -119,10 +119,10 @@ var emulator = (function(){
     pub.coordinatesofEmulator = function(){
       var coordinates = {
         x : x,
-        y : y,
+        y : y
       };
       return coordinates;
-    }
+    };
 
     pub.width = function(){
 
@@ -134,44 +134,44 @@ var emulator = (function(){
     };
     pub.ctx=function(){
         return ctx;   
-    }
+    };
     pub.can=function(){
         return can;
-    }
+    };
     pub.lefttop=function(){
         return left_top;
-    }
+    };
     pub.framesize=function(){
         return frame_size;
-    }
+    };
     pub.help=function(){
         return help;
-    }
+    };
     /***********register enent methods*********************/
     //register mouse down event methods on canvas
     //
     pub.addmousedownlistener=function(funct){
 
         can.addEventListener("mousedown", funct, false);
-    }
+    };
 
     //
     //register mouseup event methods on canvas
     pub.addmouseuplistener=function(funct){
 
         can.addEventListener("mouseup", funct, false);
-    }
+    };
 
     //register move event methods on canvas
     pub.addmousemovelistener=function(funct){
 
         can.addEventListener("mousemove", funct, false);
-    }
+    };
     
     pub.addeventtrigger=function(object,eventname,method){
         object.addEventListener(eventname, method);
     
-    }
+    };
         
 
     /******************canvas draw*****************************/
@@ -180,28 +180,28 @@ var emulator = (function(){
         ctx.fillStyle = color;  
         ctx.fillRect(x, y, width, height);
         ctx.stroke();
-      }
+      };
 
       pub.write = function(x,y,message,maxwidth){
         ctx.font = 'italic 10pt Calibri';
         ctx.fillStyle='white';
         ctx.fillText(message, x, y,maxwidth);
-      }  
+      };
       
       pub.measureTextlen=function(message){
           return ctx.measureText(message);
-      }
+      };
       pub.clearScreen= function(){
           ctx.clearRect(left_top.x,left_top.y,frame_size.w,frame_size.h);     
         //  emulator.setup();
-       }
+       };
       
       pub.drawbackImage=function(image) {
             var imageObj = new Image();
             imageObj.src = image;
             ctx.drawImage(imageObj,left_top.x, left_top.y);
             return imageObj;
-    }
+    };
     
       function draw_inner_frame(ctx, x, y, width, height) {
         ctx.beginPath();
@@ -244,7 +244,7 @@ var emulator = (function(){
             ctx.lineTo(0, -length);
             ctx.stroke();
             ctx.rotate(-pos);
-        }
+        };
 
 
         //draw a circle
@@ -265,12 +265,12 @@ var emulator = (function(){
           ctx.textAlign=string.position;
           ctx.fillStyle=string.style;
           ctx.fillText(string.data, x, y,string.maxwidth);
-        }
+        };
 
         //rotateangle:rotate canvas 
       pub.rotateangle=function(ang){
             return ctx.rotate(ang);
-        }
+        };
 
     
     /**************translate coordinate set***********/
@@ -280,7 +280,7 @@ var emulator = (function(){
       pub.transposition=function(x,y){
 
             return ctx.translate(x,y);
-        }
+        };
     
     
     
@@ -288,7 +288,7 @@ var emulator = (function(){
       //
       pub.savestate=function(){
             return ctx.save();
-        }
+        };
 
         //recoverstate
         //recover the state saved before transposition
@@ -296,8 +296,7 @@ var emulator = (function(){
       pub.recoverstate=function(){
 
             return ctx.restore();
-        }
-
+        };
     
     
     
@@ -308,7 +307,7 @@ var emulator = (function(){
             new_node.setAttribute('id',id);
             new_node.setAttribute('class',class_id);
             return new_node;
-        }
+        };
       
       //create element with id and tag
       pub.creatediv=function(class_id,id){
@@ -316,39 +315,39 @@ var emulator = (function(){
             new_node.setAttribute('id',id);
             new_node.setAttribute('class',class_id);
             return new_node;
-        }
+        };
       pub.destroydivonClick=function(element_node,funct){
             emulator.addeventtrigger(element_node,'click', funct);
-      }
+      };
       
       
       pub.appendtobody=function(node){
           return document.body.appendChild(node);
-      }
+      };
       pub.appendtoparent=function(father,son){
           return father.appendChild(son);
-      }
+      };
       pub.removebodyobject=function(id){
           var node=document.getElementById(id);
           document.body.removeChild(node);
-      }
+      };
         //get element by ID
       pub.getEid=function(id){
                 return document.getElementById(id);
-        }
+        };
       pub.setbackcolor=function(node,color){
             node.style.backgroundColor=color;
-      }
+      };
       pub.setcursor=function(node,cursor_type){
           node.style.cursor=cursor_type;
-      }
+      };
       
       pub.setTxt=function(obj,color,fontsize,string){
             obj.style.color = color;
             obj.style.fontSize = fontsize;
             obj.innerHTML=string;
           
-      }
+      };
        
       
   /***************************************************************/
@@ -359,34 +358,34 @@ var emulator = (function(){
   pub.setelementZindex=function(elementid,Z) {
     var element=document.getElementById(elementid);
     return element.style.zIndex=Z;
-  }
+  };
   pub.setelementleft=function(elementid,left) {
     var element=document.getElementById(elementid);
     return element.style.left=left;
-  }
+  };
   pub.setelementtop=function(elementid,top) {
     var element=document.getElementById(elementid);
     return element.style.top=top;
-  }
+  };
   pub.setelementwidth=function(elementid,width) {
     var element=document.getElementById(elementid);
     return element.style.width=width;
-  }
+  };
   pub.setelementheight=function(elementid,height) {
     var element=document.getElementById(elementid);
     return element.style.height=height;
-  }
+  };
   pub.setelementposition=function(elementid,absorrel) {
     var element=document.getElementById(elementid);
     return element.style.position=absorrel;
-  }
+  };
   var 	mouseaction;		
-;
+
   /*********emulator learns app infomation**********/
   pub.mouseeventtrigger=function(func){
 	mouseaction=func;		
 	
-   }
+   };
  
   
   /**********initiate************************************/
