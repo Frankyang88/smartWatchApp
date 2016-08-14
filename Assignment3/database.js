@@ -1,10 +1,10 @@
 var ac = [
     {
-    name: "Dunedin & Academy Court Motel",
-    location: {lat: -45.8637714, long: 170.50957589999996},
-    address: ["624 George St","Dunedin","Dunedin 9016","New Zealand"],
-    images: "",
-    description: "'A 4-minute walk from natural science exhibits at the Otago Museum, "
+    name: "Distinction Hotel",
+    location: {lat: -45.878833, long: 170.501959},
+    address: ["6 Liverpool Street","Dunedin 9016","New Zealand"],
+    images: "images/distinction.jpg",
+    description: "Elegant hotel with refined rooms, plus a relaxed restaurant, a bar, a lounge & a fitness center"
     },
      {
     name: "Alhambra Oaks Motor Lodge",
@@ -21,20 +21,14 @@ var ac = [
     description: "'Casual 1-2 bedroom motel rooms with kitchens, free laundry facilities and parking'"
     },
      {
-    name: "Commodore Motel",
-    location: {lat: -45.8581207, long:170.51572880000003},
-    address: ["932 Cumberland St","North Dunedin","Dunedin 9016","New Zealand"],
-    images: "",
-    description: "Unfussy studios and apartments offering kitchen facilities in a low-key motel with free breakfast"
+    name: "Law Courts Hotel",
+    location: {lat:-45.875093, long:170.506994},
+    address: ["53 Stuart St", "Dunedin 9016","New Zealand"],
+    images: "images/lawcourts.jpg",
+    description: "Has a 3.8 star rating"
     },
-     {
-    name: "858 George Street Motel",
-    location: {lat:-45.85955449999999, long: 170.51223089999996},
-    address: ["858 George St","North Dunedin","Dunedin 9016","New Zealand"],
-    images: "",
-    description: "Simple motel with laid-back rooms & apartments featuring cooking facilities" +
-    "balconies or patios'"
-    },
+
+
      {
     name: "Bella Vista Motel Dunedin",
     location: {lat:-45.8597867 , long:170.51321289999998},
@@ -42,13 +36,7 @@ var ac = [
     images: "images/bella.jpg", 
     description:"Unassuming rooms, some with kitchenettes, in a low-key motel with laundry and free parking"
     },
-     {
-    name: "Alexis Motor Lodge & Motels Dunedin",
-    location: {lat:-45.8665686, long:170.50772129999996},
-    address: ["475 George St","North Dunedin","Dunedin 9016","New Zealand"],
-    images:"",
-    description: "Unfussy studios & apartments at a relaxed city centre motel offering free breakfast."
-    },
+
      {
     name: "Quest Dunedin",
     location: {lat:-45.8728121, long:170.50732979999998},
@@ -61,24 +49,32 @@ var ac = [
 ];
 var pu = [
 {
-    name:"Entertainment Publications Dunedin",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address:["21 Dunbar St","Dunedin 9016", "New Zealand"]
+    name:"Cadbury World",
+    location: {lat:-45.874162, long:170.507045},
+    address:["280 Cumberland St","Dunedin 9016", "New Zealand"],
+    images:"images/cadbury.jpg",
+    description:"Learn how Cadbury makes chocolate."
 },
 {
-    name:"Video Tech",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address:["686 Great King St","Dunedin 9016", "New Zealand"]
+    name:"Dunedin Chinese Gardens",
+    location: {lat:-45.878349, long:170.505210},
+    address:["Corner of Rattray and Cumberland Streets","Dunedin 9016", "New Zealand"],
+    images:"images/gardens.jpg",
+    description:"The Dunedin Chinese Garden celebrates the Chinese community in Dunedin and its sister city in Shanghai."
 },
 {
-    name:"Dunedin City Library",
-    location: {lat:-45.8726941, long:170.5035676},
-    address:["230 Moray Pl","Dunedin 9016", "New Zealand"]
+    name:"Otago Daily Times",
+    location: {lat:-45.871669, long:170.508279},
+    address:["Cumberland St.","Dunedin 9016", "New Zealand"],
+    images:"images/otago.jpg",
+    description:"Head office of the Otago Daily Times"
 },   
 {
-    name:"Physio Pool Dunedin",
-    location: {lat:-45.8705768, long:170.51019610000003},
-    address:["140 Hanover St","Dunedin 9016", "New Zealand"]
+    name:"Vivace Kareoke Bar & Bistro",
+    location: {lat:-45.869494, long:170.505449},
+    address:["20 Hanover St","Dunedin 9016", "New Zealand"],
+    images:"images/vivace.jpg",
+    description:"Have fun with friends singing the night away."
 },
 {
     name:"Dunedin Public Art Gallery",
@@ -124,9 +120,11 @@ var en = [
     address:["450 George St","Dunedin 9016", "New Zealand"]
 },
 {
-    name:"Alibi Bar and Restaurant",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address:["1 Princes St","Dunedin 9016", "New Zealand"]
+    name:"Kwanghow Cuisine",
+    location: {lat:-45.875097, long:170.507511},
+    address:["18 Stuart St","Dunedin 9016", "New Zealand"],
+    images:"images/kwangchow.jpg",
+    description:"Great Chinese food"
 },
 {
     name:"The Flying Squid",
@@ -141,6 +139,8 @@ var en = [
 {
     name:"Emerson's Brewery",
     location: {lat:-45.8697503, long:170.51408200000003},
-    address:["47 Anzac Avenue","Dunedin 9016", "New Zealand"]
+    address:["47 Anzac Avenue","Dunedin 9016", "New Zealand"],
+    images:"images/emersons.jpg",
+    description:"Emerson's Brewery has a long history for Dunedin."
 }
 ];

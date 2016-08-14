@@ -326,7 +326,7 @@ var app = (function () {
             case "pu" :
                 for ( i = 0; i<pu.length; i+=1) {
 
-                    dst = new google.maps.LatLng(parseFloat(pu[i].location.lat),parseFloat(ac[i].location.long));
+                    dst = new google.maps.LatLng(parseFloat(pu[i].location.lat),parseFloat(pu[i].location.long));
                     if(parseFloat(emulator.calcDistance(src,dst)) <= parseFloat(radius/1000)){
 
                         display[count]= pu[i];
