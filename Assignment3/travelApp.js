@@ -79,28 +79,28 @@ var app = (function () {
             if(touchcoordinates.y < height+90+coordinates.y &&
               touchcoordinates.y>=90+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width)
+              && touchcoordinates.x< coordinates.x+40+width)
             firstPage();
         }
         else if(pageNum==1){
             if(touchcoordinates.y <=50+ height+coordinates.y
               && touchcoordinates.y>= 50+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width){
+              && touchcoordinates.x< coordinates.x+40+width){
             keyword="ac";    
             secondPage();       
             }
             else if(touchcoordinates.y <=90+height+coordinates.y
                    && touchcoordinates.y>=90+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width){
+              && touchcoordinates.x< coordinates.x+40+width){
             keyword="pu";
             secondPage();
             }
             else if(touchcoordinates.y <= 130+height+coordinates.y
                    && touchcoordinates.y>= 130+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width){
+              && touchcoordinates.x< coordinates.x+40+width){
             keyword="en";
             secondPage();
             }
@@ -109,21 +109,21 @@ var app = (function () {
             if(touchcoordinates.y <=50+ height+coordinates.y
               && touchcoordinates.y>= 50+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width){          
+              && touchcoordinates.x< coordinates.x+40+width){          
             radius=1000;
             thirdPage(secondOptions(),0);       
             }
             else if(touchcoordinates.y <=90+height+coordinates.y
                    && touchcoordinates.y>=90+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width){
+              && touchcoordinates.x< coordinates.x+40+width){
             radius=5000;
             thirdPage(secondOptions(),0);
             }
             else if(touchcoordinates.y <= 130+height+coordinates.y
                    && touchcoordinates.y>= 130+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width){
+              && touchcoordinates.x< coordinates.x+width+40){
             radius=20000;
             thirdPage(secondOptions(),0);
             }
@@ -133,7 +133,7 @@ var app = (function () {
             if(touchcoordinates.y < height+90+coordinates.y &&
               touchcoordinates.y>=90+coordinates.y
               && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width)       
+              && touchcoordinates.x< coordinates.x+width+40)       
             forthPage(display,i);    
         }    
         else if(pageNum==4){
