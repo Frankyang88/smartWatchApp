@@ -1,400 +1,424 @@
 
+var emulator = (function(){
+  "use strict";
+  var touchcoordinates = {
+  x: 0,
+  y: 0
+  };
 
-//Main function of travel app
-var app = (function () {
+
+  //canvas settings
+  var x,y,edge;
+  var width, height;
+  var can;
+  var ctx;
+  var left_top={};    
+  var frame_size={};   
+  var pub = {};
+  var help={
+            description:"here is a description for emulator ",
+            absolute_position:"canvas size is 400*400,lefttop is 0,0",
+            watch_outer_frame:"watch outer frame is 200*200 rectangler of which center is (200,200)",
+            watch_inner_frame:"watch inner frame is 160*160 rectangler of which center is (200,200)",
+            api_detail:""
+            };  
 
 
-    "use strict";
-    var keyword = "";
-
-    var radius;
-
-    var pub = {};
-
-    var display = [];
+     /*****************event listener*******************/
+    var canX = 0;
+    var canY = 0;
+    var mouseIsDown = 0;
+    var Swipe_Down  = 0;
+    var Swipe_Left  = 0;
+    var Swipe_Up    = 0;
+    var Swipe_Right = 0; 
+    var lastMouseDown = {x: null, y: null};// mouse position when click
  
-    var pageNum;   
-    var rad=80;
-    var clock_run;
-    var map;
-    var infoWindow;
-    var service;
 
-    //********************app to emulator interaface****************************//
-    pub.mousecallback=function(mouseevent){
-	var coordinates={x:mouseevent.x,y:mouseevent.y};
-	if (mouseevent.swipeleft ) {   
-            exit_menu();
-        }
-        else if (mouseevent.swiperight && pageNum==0 ) {
-            showClock();
-            }
-        else if (mouseevent.swipeup || mouseevent.swipedown)
-            update_thirdPage(mouseevent.swipedown ,mouseevent.swipeup);
-        else{
-            hastouchcoordinates(coordinates);            
-            }
+   
+    //define mousedown functions
+    //init Swipe ,record the position of mousedown
+    function mousedown(event) {
 
-	};
-
-    /********************menu changes operation*************************/
-    //exit menu: 
-    //    page4->page3->page2->page1
-    //    page99->page1
-    //    the order is reversed to the sequence of entering a new menu
-    //    page99 is special as it contains a analog clock that translate coordinates
-    //    and the clock is always running. So stop it firstly and recover states.   
-    function exit_menu(){
-            if(pageNum==1)
-                start();
-            else if(pageNum==2)
-                firstPage();
-            else if(pageNum==3)
-                secondPage();
-            else if(pageNum==4){
-                thirdPage(display,parseInt(localStorage.getItem("result_index")));
-                }
-            else if(pageNum==99){
-                clearInterval(clock_run);
-                emulator.recoverstate();
-                emulator.clearScreen();
-                emulator.setup();
-                start();
-                }
-        }
+        lastMouseDown.x = event.clientX;
+        lastMouseDown.y = event.clientY;
+        mouseIsDown = 1;        
+        Swipe_Down = 0;
+        Swipe_Left = 0;
+        Swipe_Up = 0;
+        Swipe_Right =0;  
 
 
-    // has touchcoordinates:
-    //click event handler: based on the current pages,decide the next page and data collected from ui
+    }
+    //mouse up function
+    //define operations on mouse event
+    //Swipe left:exit current menu
+    //Swipe Right: enter analog clock if the current page is start page
+    //Swipe up or down: alter shown data if it is on page 3
+    //Click: go to the next page
+    //reset Swipe flag
+    function mouseup(event) {
+        var coordinates = {x: event.clientX,
+                y: event.clientY};
+	
+	var mouseevent={
+		swipeleft:Swipe_Left,
+		swiperight:Swipe_Right,
+		swipeup:Swipe_Up,
+		swipedown:Swipe_Down,
+	        x:coordinates.x-left_top.x,
+                y:coordinates.y-left_top.y 
+	}
+	mouseaction(mouseevent);
+        Swipe_Left=0;
+        Swipe_Up=0;
+        Swipe_Down=0;
+    } 
+
+    //mouse move event 
+    //judge swipe event
     //
-    //
+    function mouseXY(event) {
+    if(mouseIsDown){
+      canX = event.clientX - lastMouseDown.x;
+      canY = event.clientY - lastMouseDown.y;}
 
-    function hastouchcoordinates (touchcoordinates){
-	console.log(touchcoordinates);
-        
-        var width = 120;
-        var height = 35;
-
-        if(pageNum==0){
-            if(touchcoordinates.y < height+70 &&
-              touchcoordinates.y>=70
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< 20+width)
-            firstPage();
-        }
-        else if(pageNum==1){
-            if(touchcoordinates.y <=30+ height
-              && touchcoordinates.y>= 30
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< 20+width){
-            keyword="ac";    
-            secondPage();       
-            }
-            else if(touchcoordinates.y <=70+height
-                   && touchcoordinates.y>=70
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< 20+width){
-            keyword="pu";
-            secondPage();
-            }
-            else if(touchcoordinates.y <= 110+height
-                   && touchcoordinates.y>= 110
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< 20+width){
-            keyword="en";
-            secondPage();
-            }
-        }
-        else if(pageNum==2){
-            if(touchcoordinates.y <=30+ height
-              && touchcoordinates.y>= 30
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< 20+width){          
-            radius=1000;
-            thirdPage(secondOptions(),0);       
-            }
-            else if(touchcoordinates.y <=70+height
-                   && touchcoordinates.y>=70
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< 20+width){
-            radius=5000;
-            thirdPage(secondOptions(),0);
-            }
-            else if(touchcoordinates.y <= 110+height
-                   && touchcoordinates.y>= 110
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< width+20){
-            radius=20000;
-            thirdPage(secondOptions(),0);
-            }
-        }
-        else if(pageNum==3){
-            var i=parseInt(localStorage.getItem("result_index"));
-            if(touchcoordinates.y < height+70 &&
-              touchcoordinates.y>=70
-              && touchcoordinates.x> 20
-              && touchcoordinates.x< width+20)       
-            forthPage(display,i);    
-        }    
-        else if(pageNum==4){
-            create_map();
-        }
-        
+    if (canX > 40) {
+      Swipe_Right = 1;
+    } else {
+      Swipe_Right = 0;
     }
 
-    /************************show menu*************************************/
-    //The start page
-    function StartPage(){
-            pageNum=0;
-            
-            var menu = {            
-                width:120,
-                height:35,             
-                message: "Travel App",
-                color: "black"            
-            };       
-            emulator.clearScreen();
-            emulator.drawbackImage('travel.jpg');
-            emulator.draw(20,70, menu.width, menu.height, menu.color); 
-            writemessage( 20,90,menu.message,menu.width);   
-            
-        }
-     //The first page
-    function firstPage(){
-        
-            pageNum=1;
-        var menu = {
-            width:120,
-            height:35,            
-            message1: "Accommodation",
-            message2: "Entertainment & Fun",
-            message3: "Restaurants & Bars",
-            color: "black"
-        };
-        emulator.clearScreen();
-        emulator.drawbackImage('travel.jpg');    
-        emulator.draw(20,30, menu.width, menu.height, menu.color); 
-        emulator.draw(20,70,menu.width , menu.height, menu.color); 
-        emulator.draw(20,110,menu.width, menu.height, menu.color);  
-        writemessage(20,50,menu.message1,menu.width); 
-        writemessage(20,90,menu.message2,menu.width);
-        writemessage(20,130,menu.message3,menu.width);  
-    }   
-    //The second page shows the radius.
-    function secondPage(){
-        
-
-        pageNum=2;
-        var menu = {            
-            width:120,
-            height:35,
-            message1: "1km",
-            message2: "5km",
-            message3: "20km",
-            color: "black"            
-        };       
-        emulator.clearScreen();
-        emulator.drawbackImage('travel.jpg');
-        emulator.draw(20,30, menu.width, menu.height, menu.color); 
-        emulator.draw(20,70,menu.width , menu.height, menu.color); 
-        emulator.draw(20,110,menu.width , menu.height, menu.color);  
-        writemessage(20,50,menu.message1,menu.width); 
-        writemessage(20,90,menu.message2,menu.width);
-        writemessage(20,130,menu.message3,menu.width);          
+    if (canX < -40) {
+      Swipe_Left = 1;
+    } else {
+      Swipe_Left = 0;
     }
-
-    //the third page
-    //in third page:there are a list of objects, but only one of them , with index i, is shown here
-    // save the index of current objects in display
-    //
-    function thirdPage(data,i){
-        
-        pageNum=3;
-        i=parseInt(i);
-        var menu = {            
-            width:120,
-            height:35,             
-            message: data[i].name,
-            color: "black"            
-        };       
-        emulator.clearScreen();
-        emulator.drawbackImage('travel.jpg');
-
-        emulator.draw(20,70, menu.width, menu.height, menu.color);
-        writemessage(20,90,menu.message,menu.width);
-        localStorage.setItem("result_index",i);
+    if (canY < -40) {
+      Swipe_Up = 1;
+    } else {
+      Swipe_Up = 0;
     }
-
-    // the third page
-    // if some one swipe up or down, the data on third page should be updated
-    // swipe up: show the previous item
-    // swipe down:show the next item
-    function update_thirdPage(Down,Up){
-        var i=parseInt(localStorage.getItem("result_index"));
-        if(pageNum==3){
-            if(Up && i>0){
-                thirdPage(display,i-1);
-            }
-
-            if(Down && i< display.length -1){
-                thirdPage(display,i+1);
-            }
-        }
+    if (canY > 40) {
+      Swipe_Down = 1;
+    } else {
+      Swipe_Down = 0;
     }
-    //fourthPage:
-    //show the detail of a specific item
-    // name and address
-    //specify a limited length in case of the length of string exceed the length of txt box
-    // the message format is still unsolved  
-    function forthPage(data,i){
-        pageNum=4;
-        emulator.clearScreen();
-        emulator.drawbackImage(data[i].images);
-        
-    }
-
-    function writemessage(x,y,message,maxwidth){
-        
-        var len=emulator.measureTextlen(message);
-        
-        if(len.width<120){
-            emulator.write(x+(maxwidth-len.width)/2,y,message,maxwidth);
-        }
-        else emulator.write(x,y,message,maxwidth);      
     }
 
 
-
-
-    /********************database********************************/
-    
-    //Retrieve local storage data and use them to collect the relative information from
-    //data base. and saved in display
-    //
-    function secondOptions() {
-        var match = keyword;
-         display = [];
-        var count = 0;
-        var dst;
-        var src = new google.maps.LatLng(-45.866815599999995,170.5178656);
-        var i;
-        switch(match){
-            case "ac" :
-                for ( i = 0; i<ac.length; i+=1) {
-                    dst = new google.maps.LatLng(parseFloat(ac[i].location.lat),parseFloat(ac[i].location.long));
-                    if(parseFloat(emulator.calcDistance(src,dst)) <= parseFloat(radius/1000)){
-                        display[count]= ac[i];
-                        count +=1;
-                    }
-
-                }
-                break;
-            case "pu" :
-                for ( i = 0; i<pu.length; i+=1) {
-
-                    dst = new google.maps.LatLng(parseFloat(pu[i].location.lat),parseFloat(pu[i].location.long));
-                    if(parseFloat(emulator.calcDistance(src,dst)) <= parseFloat(radius/1000)){
-
-                        display[count]= pu[i];
-                        count +=1;
-                    }
-
-                }
-                break;
-            case "en" :
-                for ( i = 0; i<en.length; i+=1) {
-                    dst = new google.maps.LatLng(parseFloat(en[i].location.lat),parseFloat(en[i].location.long));
-                    if(parseFloat(emulator.calcDistance(src,dst)) <= parseFloat(radius/1000)){
-                        display[count]= en[i];
-                        count +=1;
-                    }
-                }
-                break;
-        }
-        
-        return display;
-    }
-
-    /****************google map api*******************/
-    
-    //create google map behind canvas
-    //
-    function create_map(){
-        map=emulator.creatediv("map","googlemap");
-        emulator.appendtobody(map);
-        
-        var name=emulator.getEid("googlemap");
-      
-        emulator.setelementZindex("googlemap",10);
-        emulator.setelementleft("googlemap",emulator.lefttop().x);
-        emulator.setelementtop("googlemap",emulator.lefttop().y);
-        emulator.setelementposition("googlemap","absolute");
-        emulator.setelementheight("googlemap",emulator.framesize().h);
-        emulator.setelementwidth("googlemap",emulator.framesize().w);
-        var i=parseInt(localStorage.getItem("result_index"));
-        var mapProp = {
-             center: new google.maps.LatLng(parseFloat(display[i].location.lat),parseFloat(display[i].location.long)),
-              zoom: 16,
-              zoomControl: true,
-              overviewMapControl: true
-        };
-    
-        var map_element=emulator.getEid("googlemap");
-        google.maps.event.addDomListener(window, 'load', initialize(map_element,mapProp));
-        
-        
-    }
-    // initialize google map ,add a exit button
-    function initialize(map_element, map_para ) {   
-        map = new google.maps.Map(map_element, map_para);
-        var marker = new google.maps.Marker({
-            position: map_para.center,
-            map: map,
-            title: 'Here'
-          });
-        
-     
-
-        var quitmap = emulator.creatediv("","");
-        
-        CenterControl(quitmap, map);
-        CenterControl.index=1;
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(quitmap);  
-        
-    }
-    //unfinished, emulator and app separation
-    function CenterControl(controlDiv, map) {
-            var controlUI = emulator.creatediv("","");
-            emulator.setbackcolor(controlUI,'red');
-            emulator.setcursor(controlUI,'pointer');
-            emulator.appendtoparent(controlDiv,controlUI);
-            var controlText = emulator.create('div',"","exitbutton");
-            emulator.setTxt(controlText,'black','14px',"X");
-            emulator.appendtoparent(controlUI,controlText);
-            emulator.destroydivonClick(controlUI,app.removeMap);       
-  }
-    pub.removeMap=function(){
-        emulator.removebodyobject("googlemap");
+  
+  
+    /***************application related methods*********************/
+    //calculate distance between two points, require google(network) support    
+    pub.calcDistance = function(p1, p2) {      
+    return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
     };
     
-    /**********initiate********************/
-        // start the app with three main category selections.
-    //layout1 : the first button on left top, the following in horizontal center
-    // the emulator specifies the x and y position.
+    /********************get data set from emulator*******************/
+    pub.coordinatesofEmulator = function(){
+      var coordinates = {
+        x : x,
+        y : y
+      };
+      return coordinates;
+    };
 
-    // show the first screen 
-    function start() {
-        pageNum = 0;
-        StartPage();      
+    pub.width = function(){
+
+      return width;
+    };
+
+    pub.height = function(){
+      return height;
+    };
+    pub.ctx=function(){
+        return ctx;   
+    };
+    pub.can=function(){
+        return can;
+    };
+    pub.lefttop=function(){
+        return left_top;
+    };
+    pub.framesize=function(){
+        return frame_size;
+    };
+    pub.help=function(){
+        return help;
+    };
+    /***********register enent methods*********************/
+    //register mouse down event methods on canvas
+    //
+    pub.addmousedownlistener=function(funct){
+
+        can.addEventListener("mousedown", funct, false);
+    };
+
+    //
+    //register mouseup event methods on canvas
+    pub.addmouseuplistener=function(funct){
+
+        can.addEventListener("mouseup", funct, false);
+    };
+
+    //register move event methods on canvas
+    pub.addmousemovelistener=function(funct){
+
+        can.addEventListener("mousemove", funct, false);
+    };
+    
+    pub.addeventtrigger=function(object,eventname,method){
+        object.addEventListener(eventname, method);
+    
+    };
         
+
+    /******************canvas draw*****************************/
+     pub.draw = function(x,y,width, height, color){
+         
+        ctx.fillStyle = color;  
+        ctx.fillRect(left_top.x+x, left_top.y+y, width, height);
+        ctx.stroke();
+      };
+
+      pub.write = function(x,y,message,maxwidth){
+        ctx.font = 'italic 10pt Calibri';
+        ctx.fillStyle='white';
+        ctx.fillText(message, left_top.x+x, left_top.y+y,maxwidth);
+      };
       
-    }
+      pub.measureTextlen=function(message){
+          return ctx.measureText(message);
+      };
+      pub.clearScreen= function(){
+          ctx.clearRect(left_top.x,left_top.y,frame_size.w,frame_size.h);     
+        //  emulator.setup();
+       };
+      
+      pub.drawbackImage=function(image) {
+            var imageObj = new Image();
+            imageObj.src = image;
+	    if (imageObj.complete) {
+                  ctx.drawImage(imageObj, left_top.x, left_top.y);
+            } else {
+                 imageObj.onload = function () {
+                ctx.drawImage(imageObj, left_top.x, left_top.y);    
+              };
+             }
+            //ctx.drawImage(imageObj,left_top.x, left_top.y);
+            return imageObj;
+    };
+    
+      function draw_inner_frame(ctx, x, y, width, height) {
+        ctx.beginPath();
+        ctx.shadowBlur = 0;  
+        ctx.rect(x - width / 2, y - height / 2, width, height);
+        ctx.clearRect(x - width / 2, y - height / 2, width, height);
+        ctx.fillStyle="grey";
+        ctx.fill();  
+        ctx.stroke();
+      }
+
+      function draw_watch_frame(ctx, x, y, width, height, edge) {
+        ctx.beginPath();
+        ctx.shadowBlur = 20;
+        ctx.fillStyle='black';  
+        ctx.shadowColor = "black";
+        ctx.moveTo(x - width / 2 + edge, y - height / 2);
+        ctx.lineTo(x + width / 2 - edge, y - height / 2);
+        ctx.quadraticCurveTo(x + width / 2, y - height / 2, x + width / 2, y - height / 2 + edge);
+        ctx.lineTo(x + width / 2, y + height / 2 - edge);
+        ctx.quadraticCurveTo(x + width / 2, y + height / 2, x + width / 2 - edge, y + height / 2);
+        ctx.lineTo(x - width / 2 + edge, y + height / 2);
+        ctx.quadraticCurveTo(x - width / 2, y + height / 2, x - width / 2, y + height / 2 - edge);
+        ctx.lineTo(x - width / 2, y - height / 2 + edge);
+        ctx.quadraticCurveTo(x - width / 2, y - height / 2, x - width / 2 + edge, y - height / 2);
+        ctx.stroke();
+        ctx.fill();
+
+      }
+  
+
+
+
+     pub.drawline=function(pos, length, width) { 
+            ctx.beginPath();
+            ctx.lineWidth = width;
+            ctx.lineCap = "round";
+            ctx.moveTo(0,0);
+            ctx.rotate(pos);
+            ctx.lineTo(0, -length);
+            ctx.stroke();
+            ctx.rotate(-pos);
+        };
+
+
+        //draw a circle
+        //parameter:position,radius,color
+      pub.drawcircle=function(x,y,radius,color) {
+              ctx.beginPath();
+              ctx.arc(x, y, radius, 0, 2*Math.PI);
+              ctx.fillStyle = color;
+              ctx.fill();
+              ctx.stroke();
+        };
+
+        //draw text:universal method
+        //
+      pub.fillTxt=function(string,x,y){      
+          ctx.font = string.font;
+          ctx.textBaseline=string.baseline;
+          ctx.textAlign=string.position;
+          ctx.fillStyle=string.style;
+          ctx.fillText(string.data, x, y,string.maxwidth);
+        };
+
+        //rotateangle:rotate canvas 
+      pub.rotateangle=function(ang){
+            return ctx.rotate(ang);
+        };
+
+    
+    /**************translate coordinate set***********/
+        //transposition:
+        // translate the position to another coordinates
+        //
+      pub.transposition=function(x,y){
+
+            return ctx.translate(x,y);
+        };
+    
+    
+    
+      //savestate:save the current state of coordinate info
+      //
+      pub.savestate=function(){
+            return ctx.save();
+        };
+
+        //recoverstate
+        //recover the state saved before transposition
+        //
+      pub.recoverstate=function(){
+
+            return ctx.restore();
+        };
+    
+    
+    
+    /******************document element operation**************/
+      //create element with id and tag
+      pub.create=function(node,class_id,id){
+            var new_node=document.createElement(node);
+            new_node.setAttribute('id',id);
+            new_node.setAttribute('class',class_id);
+            return new_node;
+        };
+      
+      //create element with id and tag
+      pub.creatediv=function(class_id,id){
+            var new_node=document.createElement('div');
+            new_node.setAttribute('id',id);
+            new_node.setAttribute('class',class_id);
+            return new_node;
+        };
+      pub.destroydivonClick=function(element_node,funct){
+            emulator.addeventtrigger(element_node,'click', funct);
+      };
+      
+      
+      pub.appendtobody=function(node){
+          return document.body.appendChild(node);
+      };
+      pub.appendtoparent=function(father,son){
+          return father.appendChild(son);
+      };
+      pub.removebodyobject=function(id){
+          var node=document.getElementById(id);
+          document.body.removeChild(node);
+      };
+        //get element by ID
+      pub.getEid=function(id){
+                return document.getElementById(id);
+        };
+      pub.setbackcolor=function(node,color){
+            node.style.backgroundColor=color;
+      };
+      pub.setcursor=function(node,cursor_type){
+          node.style.cursor=cursor_type;
+      };
+      
+      pub.setTxt=function(obj,color,fontsize,string){
+            obj.style.color = color;
+            obj.style.fontSize = fontsize;
+            obj.innerHTML=string;
+          
+      };
+       
+      
+  /***************************************************************/
+//set css style wrapper
+//
+//
+  /*************************************************************/
+  pub.setelementZindex=function(elementid,Z) {
+    var element=document.getElementById(elementid);
+    return element.style.zIndex=Z;
+  };
+  pub.setelementleft=function(elementid,left) {
+    var element=document.getElementById(elementid);
+    return element.style.left=left;
+  };
+  pub.setelementtop=function(elementid,top) {
+    var element=document.getElementById(elementid);
+    return element.style.top=top;
+  };
+  pub.setelementwidth=function(elementid,width) {
+    var element=document.getElementById(elementid);
+    return element.style.width=width;
+  };
+  pub.setelementheight=function(elementid,height) {
+    var element=document.getElementById(elementid);
+    return element.style.height=height;
+  };
+  pub.setelementposition=function(elementid,absorrel) {
+    var element=document.getElementById(elementid);
+    return element.style.position=absorrel;
+  };
+  var 	mouseaction;		
+
+  /*********emulator learns app infomation**********/
+  pub.mouseeventtrigger=function(func){
+	mouseaction=func;		
+	
+   };
  
-   pub.setup = function () { 
-        emulator.mouseeventtrigger(app.mousecallback);       
-        start();   
+  
+  /**********initiate************************************/
+  pub.setup = function() {
+        x = 100;
+        y = 100;
+        width = 200;
+        height = 200;
+        edge = 10;
+        frame_size={w:160,h:160};
+        left_top={x:120,y:120};
+        
+        can = document.getElementById("emulator") ;
+        ctx = can.getContext("2d");
+
+        draw_watch_frame(ctx, 200, 200, width, height, edge);
+
+        draw_inner_frame(ctx, 200, 200, frame_size.w, frame_size.h);
+        //create();
+        //
+        emulator.addmousedownlistener(mousedown);
+        emulator.addmouseuplistener(mouseup);
+        emulator.addmousemovelistener(mouseXY);
+	
     };
     return pub;
 }());
 
-$(document).ready(app.setup);
+$(document).ready(emulator.setup);
