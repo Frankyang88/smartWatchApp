@@ -70,7 +70,7 @@ var app = (function () {
     //
 
     function hastouchcoordinates (touchcoordinates){
-	console.log(touchcoordinates);
+	
         
         var width = 120;
         var height = 35;
@@ -155,9 +155,10 @@ var app = (function () {
             };       
             emulator.clearScreen();
             emulator.drawbackImage('travel.jpg');
+            emulator.wait(function(){  
             emulator.draw(20,70, menu.width, menu.height, menu.color); 
             writemessage( 20,90,menu.message,menu.width);   
-            
+            },100);
         }
      //The first page
     function firstPage(){
