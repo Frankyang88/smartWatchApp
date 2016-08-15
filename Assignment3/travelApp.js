@@ -30,7 +30,7 @@ var app = (function () {
             showClock();
             }
         else if (mouseevent.swipeup || mouseevent.swipedown)
-            update_thirdPage(mouseevent.swipeup ,mouseevent.swipedown);
+            update_thirdPage(mouseevent.swipedown ,mouseevent.swipeup);
         else{
             hastouchcoordinates(coordinates);            
             }
@@ -70,70 +70,70 @@ var app = (function () {
     //
 
     function hastouchcoordinates (touchcoordinates){
-
-        var coordinates = emulator.coordinatesofEmulator(); 
-        var width = emulator.width()-80;
-        var height = emulator.height()/6;
+	console.log(touchcoordinates);
+        
+        var width = 120;
+        var height = 35;
 
         if(pageNum==0){
-            if(touchcoordinates.y < height+90+coordinates.y &&
-              touchcoordinates.y>=90+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+40+width)
+            if(touchcoordinates.y < height+70 &&
+              touchcoordinates.y>=70
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< 20+width)
             firstPage();
         }
         else if(pageNum==1){
-            if(touchcoordinates.y <=50+ height+coordinates.y
-              && touchcoordinates.y>= 50+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+40+width){
+            if(touchcoordinates.y <=30+ height
+              && touchcoordinates.y>= 30
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< 20+width){
             keyword="ac";    
             secondPage();       
             }
-            else if(touchcoordinates.y <=90+height+coordinates.y
-                   && touchcoordinates.y>=90+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+40+width){
+            else if(touchcoordinates.y <=70+height
+                   && touchcoordinates.y>=70
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< 20+width){
             keyword="pu";
             secondPage();
             }
-            else if(touchcoordinates.y <= 130+height+coordinates.y
-                   && touchcoordinates.y>= 130+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+40+width){
+            else if(touchcoordinates.y <= 110+height
+                   && touchcoordinates.y>= 110
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< 20+width){
             keyword="en";
             secondPage();
             }
         }
         else if(pageNum==2){
-            if(touchcoordinates.y <=50+ height+coordinates.y
-              && touchcoordinates.y>= 50+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+40+width){          
+            if(touchcoordinates.y <=30+ height
+              && touchcoordinates.y>= 30
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< 20+width){          
             radius=1000;
             thirdPage(secondOptions(),0);       
             }
-            else if(touchcoordinates.y <=90+height+coordinates.y
-                   && touchcoordinates.y>=90+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+40+width){
+            else if(touchcoordinates.y <=70+height
+                   && touchcoordinates.y>=70
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< 20+width){
             radius=5000;
             thirdPage(secondOptions(),0);
             }
-            else if(touchcoordinates.y <= 130+height+coordinates.y
-                   && touchcoordinates.y>= 130+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width+40){
+            else if(touchcoordinates.y <= 110+height
+                   && touchcoordinates.y>= 110
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< width+20){
             radius=20000;
             thirdPage(secondOptions(),0);
             }
         }
         else if(pageNum==3){
             var i=parseInt(localStorage.getItem("result_index"));
-            if(touchcoordinates.y < height+90+coordinates.y &&
-              touchcoordinates.y>=90+coordinates.y
-              && touchcoordinates.x> coordinates.x+40
-              && touchcoordinates.x< coordinates.x+width+40)       
+            if(touchcoordinates.y < height+70 &&
+              touchcoordinates.y>=70
+              && touchcoordinates.x> 20
+              && touchcoordinates.x< width+20)       
             forthPage(display,i);    
         }    
         else if(pageNum==4){
@@ -146,32 +146,26 @@ var app = (function () {
     //The start page
     function StartPage(){
             pageNum=0;
-            var coordinates = emulator.coordinatesofEmulator(); 
+            
             var menu = {            
-                x:coordinates.x,
-                y:coordinates.y,
-                width:emulator.width(),
-                height:emulator.height(),             
+                width:120,
+                height:35,             
                 message: "Travel App",
                 color: "black"            
             };       
             emulator.clearScreen();
             emulator.drawbackImage('travel.jpg');
-            emulator.draw(menu.x + 40,menu.y+90, menu.width - 80, menu.height/6, menu.color); 
-            writemessage(menu.x + 40,menu.y+110,menu.message,menu.width-80);   
+            emulator.draw(20,70, menu.width, menu.height, menu.color); 
+            writemessage( 20,90,menu.message,menu.width);   
             
         }
      //The first page
     function firstPage(){
         
             pageNum=1;
-
-           var coordinates = emulator.coordinatesofEmulator(); 
         var menu = {
-            x:coordinates.x,
-            y:coordinates.y,
-            width:emulator.width(),
-            height:emulator.height(),            
+            width:120,
+            height:35,            
             message1: "Accommodation",
             message2: "Entertainment & Fun",
             message3: "Restaurants & Bars",
@@ -179,24 +173,21 @@ var app = (function () {
         };
         emulator.clearScreen();
         emulator.drawbackImage('travel.jpg');    
-        emulator.draw(menu.x + 40,menu.y+50, menu.width - 80, menu.height/6, menu.color); 
-        emulator.draw(menu.x + 40,menu.y+90,menu.width - 80, menu.height/6, menu.color); 
-        emulator.draw(menu.x + 40,menu.y+130,menu.width - 80, menu.height/6, menu.color);  
-        writemessage(menu.x + 40,menu.y+70,menu.message1,menu.width-80); 
-        writemessage(menu.x + 40,menu.y+110,menu.message2,menu.width-80);
-        writemessage(menu.x + 40,menu.y+150,menu.message3,menu.width-80);  
+        emulator.draw(20,30, menu.width, menu.height, menu.color); 
+        emulator.draw(20,70,menu.width , menu.height, menu.color); 
+        emulator.draw(20,110,menu.width, menu.height, menu.color);  
+        writemessage(20,50,menu.message1,menu.width); 
+        writemessage(20,90,menu.message2,menu.width);
+        writemessage(20,130,menu.message3,menu.width);  
     }   
     //The second page shows the radius.
     function secondPage(){
         
 
         pageNum=2;
-        var coordinates = emulator.coordinatesofEmulator(); 
         var menu = {            
-            x:coordinates.x,
-            y:coordinates.y,
-            width:emulator.width(),
-            height:emulator.height(),
+            width:120,
+            height:35,
             message1: "1km",
             message2: "5km",
             message3: "20km",
@@ -204,12 +195,12 @@ var app = (function () {
         };       
         emulator.clearScreen();
         emulator.drawbackImage('travel.jpg');
-        emulator.draw(menu.x + 40,menu.y+50, menu.width - 80, menu.height/6, menu.color); 
-        emulator.draw(menu.x + 40,menu.y+90,menu.width - 80, menu.height/6, menu.color); 
-        emulator.draw(menu.x + 40,menu.y+130,menu.width - 80, menu.height/6, menu.color);  
-        writemessage(menu.x + 40,menu.y+70,menu.message1,menu.width-80); 
-        writemessage(menu.x + 40,menu.y+110,menu.message2,menu.width-80);
-        writemessage(menu.x + 40,menu.y+150,menu.message3,menu.width-80);          
+        emulator.draw(20,30, menu.width, menu.height, menu.color); 
+        emulator.draw(20,70,menu.width , menu.height, menu.color); 
+        emulator.draw(20,110,menu.width , menu.height, menu.color);  
+        writemessage(20,50,menu.message1,menu.width); 
+        writemessage(20,90,menu.message2,menu.width);
+        writemessage(20,130,menu.message3,menu.width);          
     }
 
     //the third page
@@ -220,20 +211,17 @@ var app = (function () {
         
         pageNum=3;
         i=parseInt(i);
-        var coordinates = emulator.coordinatesofEmulator(); 
         var menu = {            
-            x:coordinates.x,
-            y:coordinates.y,
-            width:emulator.width(),
-            height:emulator.height(),             
+            width:120,
+            height:35,             
             message: data[i].name,
             color: "black"            
         };       
         emulator.clearScreen();
         emulator.drawbackImage('travel.jpg');
 
-        emulator.draw(menu.x + 40,menu.y+90, menu.width - 80, menu.height/6, menu.color);
-        writemessage(menu.x + 40,menu.y+110,menu.message,menu.width-80);
+        emulator.draw(20,70, menu.width, menu.height, menu.color);
+        writemessage(20,90,menu.message,menu.width);
         localStorage.setItem("result_index",i);
     }
 
@@ -260,31 +248,9 @@ var app = (function () {
     // the message format is still unsolved  
     function forthPage(data,i){
         pageNum=4;
-        var coordinates = emulator.coordinatesofEmulator(); 
-        var menu = {            
-            x:coordinates.x,
-            y:coordinates.y,
-            width:emulator.width(),
-            height:emulator.height(),
-            message1: data[i].name,
-            message2: data[i].address[0],
-            message3:"",
-            message4:data[i].description,
-            message5:"-Google",
-            color: "black"
-        };
         emulator.clearScreen();
         emulator.drawbackImage(data[i].images);
-
-        for(i=1;i<data[i].address.length;i++)
-            menu.message3+=data[i].address[i];
-
-        emulator.draw(menu.x + 20,menu.y+150, menu.width-30, menu.height/6.8, menu.color);
-        writemessage(menu.x + 20,menu.y+150,menu.message1,menu.width-50);
-        writemessage(menu.x + 20,menu.y+180,menu.message2,menu.width);
-        writemessage(menu.x + 20,menu.y + 160, menu.message4,menu.width-10);
-        writemessage(menu.x + 20,menu.y + 170, menu.message5,menu.width);
-
+        
     }
 
     function writemessage(x,y,message,maxwidth){
@@ -399,11 +365,11 @@ var app = (function () {
     //unfinished, emulator and app separation
     function CenterControl(controlDiv, map) {
             var controlUI = emulator.creatediv("","");
-            emulator.setbackcolor(controlUI,'white');
+            emulator.setbackcolor(controlUI,'red');
             emulator.setcursor(controlUI,'pointer');
             emulator.appendtoparent(controlDiv,controlUI);
             var controlText = emulator.create('div',"","exitbutton");
-            emulator.setTxt(controlText,'black','14px',"quitMap");
+            emulator.setTxt(controlText,'black','14px',"X");
             emulator.appendtoparent(controlUI,controlText);
             emulator.destroydivonClick(controlUI,app.removeMap);       
   }
