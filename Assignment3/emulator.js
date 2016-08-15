@@ -69,7 +69,8 @@ var emulator = (function(){
 		swipedown:Swipe_Down,
 	        x:coordinates.x-left_top.x,
                 y:coordinates.y-left_top.y 
-	}
+	};
+	console.log(mouseevent);
 	mouseaction(mouseevent);
         Swipe_Left=0;
         Swipe_Up=0;
@@ -397,8 +398,49 @@ var emulator = (function(){
 	mouseaction=func;		
 	
    };
- 
-  
+
+   /********js import***********************************/
+   function importJs(){
+       var exist = [];
+       var i = 0;
+       var count = 0;
+       //find and load any js file that is in the app folder
+       $("body").append("<form>Please enter path to your js file: <br>For example: app/app.js <br>" +
+           "<input type='text' name= '' class='enter' value='' id='jsPath'/>" +
+           "<input type='button' value='import' id='buttonA' /></form>");
+       $("#buttonA").click(function(){
+           if(exist.length>0){
+               for(i=0; i<exist.length; i+=1){
+                   if($('#jsPath').val() === exist[i]){
+                       count +=1;
+                   }
+               }
+           }
+           if(count===0){
+               $('head').append("<script src='" + $('#jsPath').val() + "'></script>");
+               exist.push($('#jsPath').val());
+           }
+           count =0;
+
+       });
+       $("form").submit(function() {
+           if(exist.length>0){
+               for(i=0; i<exist.length; i+=1){
+                   if($('#jsPath').val() === exist[i]){
+                       count +=1;
+                   }
+               }
+           }
+           if(count===0){
+               $('head').append("<script src='" + $('#jsPath').val() + "'></script>");
+               exist.push($('#jsPath').val());
+           }
+           count =0;
+           return false;
+       });
+
+
+   }
   /**********initiate************************************/
   pub.setup = function() {
         x = 100;
@@ -420,7 +462,7 @@ var emulator = (function(){
         emulator.addmousedownlistener(mousedown);
         emulator.addmouseuplistener(mouseup);
         emulator.addmousemovelistener(mouseXY);
-	
+        importJs();
     };
     return pub;
 }());
