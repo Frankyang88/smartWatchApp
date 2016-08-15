@@ -23,7 +23,8 @@ var emulator = (function(){
             api_detail:""
             };  
 
-
+     
+     
      /*****************event listener*******************/
     var canX = 0;
     var canY = 0;
@@ -115,6 +116,9 @@ var emulator = (function(){
     return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
     };
     
+    pub.wait=function(funct,time){
+		setTimeout(funct,time);
+	}
     /********************get data set from emulator*******************/
     pub.coordinatesofEmulator = function(){
       var coordinates = {
