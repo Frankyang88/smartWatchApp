@@ -16,11 +16,9 @@ var emulator = (function(){
   var frame_size={};   
   var pub = {};
   var help={
-            description:"here is a description for emulator ",
-            absolute_position:"canvas size is 400*400,lefttop is 0,0",
-            watch_outer_frame:"watch outer frame is 200*200 rectangler of which center is (200,200)",
-            watch_inner_frame:"watch inner frame is 160*160 rectangler of which center is (200,200)",
-            api_detail:""
+            description:"Emulator built & designed by the Perfect Work Team ",
+            watchSize:"The watch's size is 160*160 pixel. Shapes and objects drawn in this size should be able
+            to fit in the emulator."
             };  
 
      
