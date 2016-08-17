@@ -116,7 +116,7 @@ var emulator = (function(){
     
     pub.wait=function(funct,time){
 		setTimeout(funct,time);
-	}
+	};
     /********************get data set from emulator*******************/
     pub.coordinatesofEmulator = function(){
       var coordinates = {
@@ -395,7 +395,15 @@ var emulator = (function(){
 	mouseaction=func;		
 	
    };
-
+   /********formating description************/
+    pub.formatString = function(string, x, y){
+        var array = string.split("\n");
+        for(var i=0; i<array.length; i++){
+            console.log(array[i]);
+            pub.write(x, y, array[i], width-50);
+            y += 15;
+        }
+    };
    /********js import***********************************/
    function importJs(){
        var exist = [];
@@ -435,9 +443,51 @@ var emulator = (function(){
            count =0;
            return false;
        });
-
-
    }
+
+    // return local storage
+
+    pub.getItem=function(src){return localStorage.getItem(src);};
+    pub.setItem=function(src,value){ localStorage.setItem(src,value);};
+
+
+
+    //return gps location, this function requires consent from the browser
+    pub.getLocation = function(doSomething){
+        var a;
+
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        function success(pos) {
+            a = pos.coords;
+
+            console.log('Your current position is:');
+            console.log('Latitude : ' + a.latitude);
+            console.log('Longitude: ' + a.longitude);
+            console.log('More or less ' + a.accuracy + ' meters.');
+            emulator.setItem("longitude",a.longitude);
+            emulator.setItem("latitude",a.latitude);
+            emulator.setItem("gpsflag",1);
+
+            a = new google.maps.LatLng(a.latitude,a.longitude);
+            //doSomething(a);
+        }
+
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+    };
+
+
+
   /**********initiate************************************/
   pub.setup = function() {
         x = 100;

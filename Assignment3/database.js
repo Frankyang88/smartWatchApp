@@ -4,28 +4,60 @@ var ac = [
     location: {lat: -45.878833, long: 170.501959},
     address: ["6 Liverpool Street","Dunedin 9016","New Zealand"],
     images: "images/distinction.jpg",
-    description: "Elegant hotel with refined rooms, plus a relaxed restaurant, a bar, a lounge & a fitness center"
+    description: "The Distinction Hotels Group\n" +
+    " has transformed the 1937 \n " +
+    "former Chief Post Office in Dunedin \n" +
+    "into an elegant 4 1/2 star luxury hotel, \n" +
+    "located in the rejuvenated and vibrant \n" +
+    "exchange area in the heart of the city. \n" +
+    "The hotel consists of 121 \n" +
+    "elegant suites and studio rooms, \n" +
+    "Parcels Restaurant, Post Bar, \n" +
+    "conference facilities and an on-site gym. \n" +
+    "Open 24 hours."
     },
      {
     name: "Alhambra Oaks Motor Lodge",
     location: {lat:-45.8622211, long:170.511841},
     address: ["588 Great King St","North Dunedin","Dunedin 9016","New Zealand"],
     images: "images/alhambra.jpg" ,
-    description: "Modest accomodation with kitchen facilities"
+    description: "Welcome to Dunedin’s \n" +
+    "Alhambra Oaks Motor Lodge Motel \n" +
+    "with Conference Room \n" +
+    "at 588 Great King Street, Dunedin, \n" +
+    "New Zealand. Donna and Aiann, \n" +
+    "your friendly hosts, offer top quality, \n" +
+    "comfortable and modern luxury accommodation \n" +
+    "at an affordable price\n" +
+    " and in an excellent location."
     },
      {
     name: "Woodlands Motels and Apartments",
     location: {lat:-45.8621471, long:170.5120061},
     address: ["594 Great King St","North Dunedin","Dunedin 9016","New Zealand"],
     images: "images/woodlands.jpg",
-    description: "'Casual 1-2 bedroom motel rooms with kitchens, free laundry facilities and parking'"
+    description: "Woodlands Village Motels & Apartments Dunedin \n" +
+    "offer a range of units\n" +
+    " to suit your needs. \n" +
+    "Relax in spacious purpose built\n" +
+    " motels and apartments,\n" +
+    " surrounded by established gardens \n" +
+    "in a park-like setting."
     },
      {
     name: "Law Courts Hotel",
     location: {lat:-45.875093, long:170.506994},
     address: ["53 Stuart St", "Dunedin 9016","New Zealand"],
     images: "images/lawcourts.jpg",
-    description: "Has a 3.8 star rating"
+    description: "The Law Courts Hotel is your one\n" +
+    " stop destination for quality accommodation,\n" +
+    " friendly hospitality and home cooked food, \n" +
+    "all at an affordable price \n" +
+    "and within walking distance \n" +
+    "of the many attractions downtown district of Dunedin. \n" +
+    "All of our staff our fully committed\n" +
+    " to making your stay in Dunedin \n" +
+    "at the Law Courts Hotel a pleasant memorable experience"
     },
 
 
@@ -34,17 +66,12 @@ var ac = [
     location: {lat:-45.8597867 , long:170.51321289999998},
     address: ["858 George St","North Dunedin","Dunedin 9016","New Zealand"],
     images: "images/bella.jpg", 
-    description:"Unassuming rooms, some with kitchenettes, in a low-key motel with laundry and free parking"
-    },
+    description:"Unassuming rooms,\n" +
+    " some with kitchenettes,\n" +
+    " in a low-key motel with laundry and free parking"
+    }
 
-     {
-    name: "Quest Dunedin",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address: ["333 Cumberland St","North Dunedin","Dunedin 9016","New Zealand"],
-    images: "",
-    description: "Unfussy studios & apartments in a straightforward hotel featuring free laundry facilities"
 
-    }   
    
 ];
 var pu = [
@@ -60,7 +87,8 @@ var pu = [
     location: {lat:-45.878349, long:170.505210},
     address:["Corner of Rattray and Cumberland Streets","Dunedin 9016", "New Zealand"],
     images:"images/gardens.jpg",
-    description:"The Dunedin Chinese Garden celebrates the Chinese community in Dunedin and its sister city in Shanghai."
+    description:"The Dunedin Chinese Garden celebrates the Chinese community\n" +
+    " in Dunedin and its sister city in Shanghai."
 },
 {
     name:"Otago Daily Times",
@@ -75,72 +103,33 @@ var pu = [
     address:["20 Hanover St","Dunedin 9016", "New Zealand"],
     images:"images/vivace.jpg",
     description:"Have fun with friends singing the night away."
-},
-{
-    name:"Dunedin Public Art Gallery",
-    location: {lat:-45.8744863, long:170.50273889999994},
-    address:["30 The Octagon","Dunedin 9016", "New Zealand"]
-},
-  {
-    name:"Forsyth Barr Stadium",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address:["130 Anzac Ave","Dunedin 9016", "New Zealand"]
-},
-  {
-    name:"Otago Museum",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address:["419 Great King St","Dunedin 9016", "New Zealand"]
-},
-  {
-    name:"Dunedin i-SITE Visitor Information Centre",
-    location: {lat:-45.87368779999999, long:170.5037433},
-    address:["50 The Octagon","Dunedin 9016", "New Zealand"]
 }
 ];
 
 var en = [
 {
-        name:"McDonalds Dunedin",
-        location: {lat:-45.859907, long: 170.513291},
-        address:["711 Great King St","North Dunedin 9016", "New Zealand"]
-    },
-    {
-        name:"Domino's Pizza",
-        location: {lat:-45.859907, long:170.51408200000003},
-        address:["736 Great King St, North Dunedin","Dunedin 9016", "New Zealand"]
-    },
-    {
-        name:"KFC",
-        location: {lat:-45.85987 	, long:170.51327},
-        address:["714 Great King St","North Dunedin 9016", "New Zealand"]
-    },
-{
-    name:"Korea House",
-    location: {lat:-45.86806, long:170.51483},
-    address:["450 George St","Dunedin 9016", "New Zealand"]
-},
-{
+    /*Change the longitude and latitude*/
     name:"Kwanghow Cuisine",
     location: {lat:-45.875097, long:170.507511},
-    address:["18 Stuart St","Dunedin 9016", "New Zealand"],
+    address:["160 King Edward Street","South Dunedin 9012", "New Zealand"],
     images:"images/kwangchow.jpg",
-    description:"Great Chinese food"
+    description:"Kwangchow Cuisine is a family friendly Chinese restaurant\n" +
+    " in Dunedin serving authentic Chinese food straight from the wok.\n" +
+    "Although a small space, it serves up dishes \n" +
+    "that are big on flavour. Kwangchow Cuisine has an extensive menu \n" +
+    "including dim sum/yum cha. \n" +
+    "It is open 7 days, Monday to Sunday from 11am to 10pm."
 },
-{
-    name:"The Flying Squid",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address:["118 Albany St","Dunedin 9016", "New Zealand"]
-},
-{
-    name:"Alibi Bar and Restaurant",
-    location: {lat:-45.8728121, long:170.50732979999998},
-    address:["170 Frederick Street","Dunedin 9016", "New Zealand"]
-},   
-{
-    name:"Emerson's Brewery",
+
+{   /*Speight's Brewery*/
+    name:"Speights's Brewery",
     location: {lat:-45.8697503, long:170.51408200000003},
-    address:["47 Anzac Avenue","Dunedin 9016", "New Zealand"],
+    address:["200 Rattray St","Dunedin 9016", "New Zealand"],
     images:"images/emersons.jpg",
-    description:"Emerson's Brewery has a long history for Dunedin."
+    description:"The Speight’s Brewery Tour is an award winning interactive \n" +
+    "and informative guided tour through our historic working brewery. \n" +
+    "If you like beer, you’ll love this tour. \n" +
+    "But it’s just as rewarding for history buffs \n" +
+    "or those seeking to discover a few secrets from our brewers."
 }
 ];
