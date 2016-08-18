@@ -16,7 +16,7 @@ var emulator = (function(){
   var frame_size={};   
   var pub = {};
   var help={
-            description:"Emulator built & designed by the Perfect Work Team ",
+            description:"Emulator built & designed by the Travel App Team ",
             watchSize:"The watch's size is 160*160 pixel. Shapes and objects drawn in this size should be able to fit in the emulator."
             };  
 
