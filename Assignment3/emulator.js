@@ -5,6 +5,9 @@
  Office hours: 10am-3pm
  Bring a pizza if service is needed during lunch time.
  */
+
+
+/*****************event listener*******************/
 var emulator = (function () {
     "use strict";
     var touchcoordinates = {
@@ -22,12 +25,13 @@ var emulator = (function () {
     var frame_size = {};
     var pub = {};
     var help = {
-        description: "Emulator built & designed by the Perfect Work Team ",
+        description: "Emulator built & designed by the Travel App Team ",
         watchSize: "The watch's size is 160*160 pixel. Shapes and objects drawn in this size should be able to fit in the emulator."
     };
 
 
     /*****************event listener*******************/
+
     var canX = 0;
     var canY = 0;
     var mouseIsDown = 0;
@@ -132,16 +136,22 @@ var emulator = (function () {
         return coordinates;
     };
 
+    /*** Width is set to 160 **/
     pub.width = function () {
+
 
         return width;
     };
 
+    /*** Height is set to 160 ***/
     pub.height = function () {
         return height;
     };
+
+
     pub.ctx = function () {
         return ctx;
+
     };
     pub.can = function () {
         return can;
@@ -272,12 +282,12 @@ var emulator = (function () {
 
     //draw text:universal method
     //
-    pub.fillTxt = function (string, x, y) {
-        ctx.font = string.font;
-        ctx.textBaseline = string.baseline;
-        ctx.textAlign = string.position;
-        ctx.fillStyle = string.style;
-        ctx.fillText(string.data, x, y, string.maxwidth);
+    pub.fillTxt = function (str, x, y) {
+        ctx.font = str.font;
+        ctx.textBaseline = str.baseline;
+        ctx.textAlign = str.position;
+        ctx.fillStyle = str.style;
+        ctx.fillText(str.data, x, y, str.maxwidth);
     };
 
     //rotateangle:rotate canvas
@@ -398,8 +408,8 @@ var emulator = (function () {
 
     };
     /********formating description************/
-    pub.formatString = function (string, x, y) {
-        var array = string.split("\n");
+    pub.formatString = function (str, x, y) {
+        var array = str.split("\n");
         for (var i = 0; i < array.length; i++) {
             console.log(array[i]);
             pub.write(x, y, array[i], width - 50);

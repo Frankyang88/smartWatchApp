@@ -126,10 +126,25 @@ var en = [
         location: {lat: -45.8697503, long: 170.51408200000003},
         address: ["200 Rattray St", "Dunedin 9016", "New Zealand"],
         images: "images/emersons.jpg",
-        description: "The Speight’s Brewery Tour is an award winning interactive \n" +
-        "and informative guided tour through our historic working brewery. \n" +
+        description: "The Speight’s Brewery Tour is an award winning\n" +
+        "interactive and informative guided\n" +
+        "tour through our historic working brewery. \n" +
         "If you like beer, you’ll love this tour. \n" +
         "But it’s just as rewarding for history buffs \n" +
-        "or those seeking to discover a few secrets from our brewers."
+        "or those seeking to discover\n" +
+        "a few secrets from our brewers."
+    },
+
+    {
+        name: "Korea House",
+        location: {lat: -45.866914, long: 170.507697},
+        address: ["450 George St", "Dunedin 9016", "New Zealand"],
+        images: "images/korea.jpg",
+        description: "Korea House has been in business \n" +
+        "and locally owned since 1997 \n" +
+        "serving quality food at honest prices. \n" +
+        "Very little has changed since establishment,\n" +
+        "our chefs, location and owners remain the same."
     }
 ];
+
