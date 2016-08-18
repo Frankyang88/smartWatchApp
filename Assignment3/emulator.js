@@ -125,15 +125,17 @@ var emulator = (function(){
       };
       return coordinates;
     };
-
+/*** Width is set to 160 **/
     pub.width = function(){
 
       return width;
     };
-
+/*** Height is set to 160 ***/
     pub.height = function(){
       return height;
     };
+    
+    
     pub.ctx=function(){
         return ctx;   
     };
