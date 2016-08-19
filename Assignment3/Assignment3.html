@@ -25,7 +25,14 @@
 
     </div>
     <div>
-        <h2><a href="index.html">Travel App</a></h2>
+        <h1>Emulator Structure and Function</h1>
+        <h2>User input and events</h2>
+        <p>
+            The emulator provides a user input service to the app. This is done by passing  a callback function from the app to the emulator at the setup. When a mouse event occurs, the emulator then use the callback function to pass the mouse event as an object back to the app. 
+The app will describe what to do for input (a mouse event in the browser. For example, when a user ‘presses’ a button on the screen, swipes to the right, left and right.  The emulator interpret this as a click  and a click and drag event. 
+The emulator initializes a mouseEvent object. This object has the following attributes - one that tracks the state of a mouse click event (stored as a 0 or 1), where exactly the user has clicked (stored as x and y coordinates) and also a variable that tracks and saves the state of a click and drag event (stored as canY and canX). It can use these to specify what to display when a user event has occurred without the app knowing that the user event was a click from the browser.
+
+        </p>
     </div>
 
     <div id="about_the_app">
