@@ -1,5 +1,5 @@
 /*
- Main function of travel app
+ Main function of emulator
  Created by: Travel app team (Ana, Junyu, Frank, Alycia)
  Office: Lab B
  Office hours: 10am-3pm
