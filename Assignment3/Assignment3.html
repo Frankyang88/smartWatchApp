@@ -13,103 +13,118 @@
     </header>
     <div id="team_members">
 
-        <h2> Team Members </h2>
+        <h3> Team Members </h3>
 
-        <h4> Junyu Zhu : </h4>
+        <h4> Junyu Zhu : 9475415</h4>
 
-        <h4> Alycia Ng 8170944: </h4>
+        <h4> Alycia Ng : 8170944</h4>
 
-        <h4> Ana Baltazar 7002399: </h4>
+        <h4> Ana Baltazar : 7002399</h4>
 
-        <h4> Jialin Yang 7674607: </h4>
-
-    </div>
-    <div>
-        <h1>Emulator Structure and Function</h1>
-        <h2>User input and events</h2>
-        <p>
-            The emulator provides a user input service to the app. This is done by passing a callback function from the
-            app to the emulator at the setup. When a mouse event occurs, the emulator then use the callback function to
-            pass the mouse event as an object back to the app.
-            The app will describe what to do for input (a mouse event in the browser. For example, when a user ‘presses’
-            a button on the screen, swipes to the right, left and right. The emulator interpret this as a click and a
-            click and drag event.
-            The emulator initializes a mouseEvent object. This object has the following attributes - one that tracks the
-            state of a mouse click event (stored as a 0 or 1), where exactly the user has clicked (stored as x and y
-            coordinates) and also a variable that tracks and saves the state of a click and drag event (stored as canY
-            and canX). It can use these to specify what to display when a user event has occurred without the app
-            knowing that the user event was a click from the browser.
-
-        </p>
-    </div>
-
-    <div id="about_the_app">
-
-        <h1>About the App</h1>
-
-        <h2>About the Emulator</h2>
-
-
-        <h2>About the Travel App</h2>
-
+        <h4> Jialin Yang : 7674607</h4>
 
     </div>
+
 
     <div id="Emulator Structure and Function">
-
-        <h1>User input and events</h1>
-        <p> The emulator provides a user input service to the app. This is done by passing a callback function from the
-            app to the emulator at the setup. When a mouse event occurs, the emulator then use the callback function to
-            pass the mouse event as an object back to the app. </p>
-        <p>The app will describe what to do for input (a mouse event in the browser. For example, when a user ‘presses’
-            a button on the screen, swipes to the right, left and right. The emulator interpret this as a click and a
-            click and drag event.</p>
-        <p>The emulator initializes a mouseEvent object. This object has the following attributes - one that tracks the
-            state of a mouse click event (stored as a 0 or 1), where exactly the user has clicked (stored as x and y
-            coordinates) and also a variable that tracks and saves the state of a click and drag event (stored as canY
-            and canX). It can use these to specify what to display when a user event has occurred without the app
-            knowing that the user event was a click from the browser.</p>
-        <h1>Support for third-party-Libraries: Google Map</h1>
-        <p>The emulator can support display for a Google Map. This is done by having specific functions that can
-            display. For example, there is a method that appends a ‘div’ container to display a dynamic map. Having a
-            div tag to display a Google Map allows it to be dynamic instead of a static image in the canvas. </p>
-        <h1>Formatting text</h1>
-        <p>In the description section of each location, if the app wants to display a new paragraph we added in “\n”
-            that tells the emulator to create a new line. In this way, the application will still remain ignorant of
-        <p> tags and <br> tags if it wants to create a new line in the paragraph. We have also created a function that
-            measures length of the text so that it fits within the frame-size of the emulator. In this way, developers
-            who want to install their app on our emulator can display text that fits in the emulator screen. </p>
-        <h1>Display related Functions of the Emulator</h1>
-        <p>The Smart Watch Emulator provides several Canvas functions for the app. For example, it can draw an image
-            with full screen, text and any rectangle. The purpose of using canvas functions is to allow the app to
-            remain ignorant of the browser and instead focus on what to display as images, buttons and text.</p>
-        <p>The app can draw a button in any size of the emulator screen. In the emulator, a data object returns the
-            height and width of the screen. This data object will help the app draw images, buttons and shapes that fit
-            within the size of the screen. The app can also control the color of the button as well.</p>
-        <p>To clear the display the app would need to call the emulator.clearScreen() function.</p>
-        <p>To draw a rectangle, the app would need to call the draw function of the emulator and pass in the width,
-            height and colour of the rectangle.</p>
-        <p>The emulator also provides the width and height settings to the app. Therefore configuring where the x and y
-            coordinate of each button, image, text or shape that the app wants to display in the emulator should be
-            easier. The x and y coordinates are fixed to be relative to the position of the Watch screen on the browser.
-            Also, the emulator provides the width and height of its frame. This also allows the app to focus on the
-            layout of its display without worrying how it should output it on the emulator screen.</p>
-        <p>The emulator also provides functions to display circles and lines but it is specific to drawing a clock. </p>
-        <h1>Location Services</h1>
-        <p>The emulator can calculate the distance between two points. The app must provide two locations. Each of them
-            contains both longitude and latitude.</p>
-        <p>The emulator also provides GPS coordinates to the app on request. Location settings must be set to allow GPS
-            locations.</p>
-        <h1>Import function</h1>
-        <p>The emulator installs the app just like a real smartwatch by asking the user to input the name of its app js
-            file. Once the user inputs its javascript file, the emulator will “install” the app by appending a script
-            tag to the HTML file.</p>
-        <p>For the import function to work, one would need to use https:// if using Google Chrome. For the other
-            browsers, one can use the standard protocol.</p>
-        <p>This should emulate a user installing an app through an app library like Google Play or iTunes.</p>
+        <h1><b>Emulator Structure and Function</b></h1>
+        <ul>
+            <li>
+                <h3>User input and events</h3>
+                <p> The emulator provides a user input service to the app. This is done by passing a callback function
+                    from the
+                    app to the emulator at the setup. When a mouse event occurs, the emulator then use the callback
+                    function to
+                    pass the mouse event as an object back to the app. </p>
+                <p>The app will describe what to do for input (a mouse event in the browser. For example, when a user
+                    ‘presses’
+                    a button on the screen, swipes to the right, left and right. The emulator interpret this as a click
+                    and a
+                    click and drag event.</p>
+                <p>The emulator initializes a mouseEvent object. This object has the following attributes - one that
+                    tracks the
+                    state of a mouse click event (stored as a 0 or 1), where exactly the user has clicked (stored as x
+                    and y
+                    coordinates) and also a variable that tracks and saves the state of a click and drag event (stored
+                    as canY
+                    and canX). It can use these to specify what to display when a user event has occurred without the
+                    app
+                    knowing that the user event was a click from the browser.</p>
+            </li>
+            <li>
+                <h3>Support for third-party-Libraries: Google Map</h3>
+                <p>The emulator can support display for a Google Map. This is done by having specific functions that can
+                    display. For example, there is a method that appends a ‘div’ container to display a dynamic map.
+                    Having a
+                    div tag to display a Google Map allows it to be dynamic instead of a static image in the
+                    canvas. </p>
+            </li>
+            <li>
+                <h3>Formatting text</h3>
+                <p>In the description section of each location, if the app wants to display a new paragraph we added in
+                    “\n”
+                    that tells the emulator to create a new line. In this way, the application will still remain
+                    ignorant of
+                <p> tags and <br> tags if it wants to create a new line in the paragraph. We have also created a
+                    function that
+                    measures length of the text so that it fits within the frame-size of the emulator. In this way,
+                    developers
+                    who want to install their app on our emulator can display text that fits in the emulator screen.
+                </p>
+            </li>
+            <li>
+                <h3>Display related Functions of the Emulator</h3>
+                <p>The Smart Watch Emulator provides several Canvas functions for the app. For example, it can draw an
+                    image
+                    with full screen, text and any rectangle. The purpose of using canvas functions is to allow the app
+                    to
+                    remain ignorant of the browser and instead focus on what to display as images, buttons and text.</p>
+                <p>The app can draw a button in any size of the emulator screen. In the emulator, a data object returns
+                    the
+                    height and width of the screen. This data object will help the app draw images, buttons and shapes
+                    that fit
+                    within the size of the screen. The app can also control the color of the button as well.</p>
+                <p>To clear the display the app would need to call the emulator.clearScreen() function.</p>
+                <p>To draw a rectangle, the app would need to call the draw function of the emulator and pass in the
+                    width,
+                    height and colour of the rectangle.</p>
+                <p>The emulator also provides the width and height settings to the app. Therefore configuring where the
+                    x and y
+                    coordinate of each button, image, text or shape that the app wants to display in the emulator should
+                    be
+                    easier. The x and y coordinates are fixed to be relative to the position of the Watch screen on the
+                    browser.
+                    Also, the emulator provides the width and height of its frame. This also allows the app to focus on
+                    the
+                    layout of its display without worrying how it should output it on the emulator screen.</p>
+                <p>The emulator also provides functions to display circles and lines but it is specific to drawing a
+                    clock. </p>
+            </li>
+            <li>
+                <h3>Location Services</h3>
+                <p>The emulator can calculate the distance between two points. The app must provide two locations. Each
+                    of them
+                    contains both longitude and latitude.</p>
+                <p>The emulator also provides GPS coordinates to the app on request. Location settings must be set to
+                    allow GPS
+                    locations.</p>
+            </li>
+            <li>
+                <h3>Import function</h3>
+                <p>The emulator installs the app just like a real smartwatch by asking the user to input the name of its
+                    app js
+                    file. Once the user inputs its javascript file, the emulator will “install” the app by appending a
+                    script
+                    tag to the HTML file.</p>
+                <p>For the import function to work, one would need to use https:// if using Google Chrome. For the other
+                    browsers, one can use the standard protocol.</p>
+                <p>This should emulate a user installing an app through an app library like Google Play or iTunes.</p>
+            </li>
+        </ul>
     </div>
 
     <div id="The Travel Application">
+        <h1>The Travel Application</h1>
         <p>The Travel Application requires the database.js to be imported first before the travelApp.js is imported in
             the emulator.</p>
         <p>The Travel Application that we have developed has a database that is specific to Dunedin. The database of the
@@ -132,7 +147,7 @@
     </div>
 
     <div id="Known issues">
-
+        <h1>Known issues</h1>
         <p> The Travel App has to wait for the Google Maps API to respond and return the current geographical location
             of the user. This causes lagging when loading the click handler on the page showing the radius options for
             the first. </p>
@@ -140,7 +155,7 @@
     </div>
 
     <div id="API">
-
+        <h1>API</h1>
         <p>Frame size:
             The watch frame size is 200*200, the inner frame is 160*160. Every component displayed on the screen must be
             within the inner frame.</p>
@@ -207,8 +222,19 @@
             Will make the emulator wait. This is a thin wrapper for the setTimeout browser function.</p>
 
     </div>
-
-    <div id="Programming Experience & Tools ">
+    <div id="Test cases">
+        <h1>Test cases</h1>
+        <p>We have implemented 28 testcases, which include eventlisteners, emulator api test and application-related
+            functions. <a href="testcase/test.html">QUnit testing </a> can report error when the test case fails.
+            All the test cases can pass in Safari, Chrome and FireFox.
+        </p>
+        <p>UI test is a quite hard work. As the "button" drawn on the canvas is made of pixels, there is no objects
+            there.
+            Some established test methods requires comparison between two pictures, comparing the value of every pixel
+            on the canvas with another image. When the pictures are painted, we have no reference image at all.</p>
+    </div>
+    <div id="Programming Experience & Tools">
+        <h1>Programming Experience & Tools</h1>
         <p>Our emulator relied heavily on the Canvas element to display the App’s information. Therefore we needed a way
             to debug the Canvas element. The first tool we tried using was from Google Chrome’s Dev Tools. We spent a
             long time trying to make this debugger tool work. In the end, we realized too late that we have wasted a lot
@@ -239,7 +265,9 @@
             a while loop at setup. </p>
 
     </div>
+
     <div id="Team Work and Group Issues">
+        <h1>Team Work and Group Issues</h1>
         <p>We have a lot of difficulty coordinating meeting times that suit everyone. Each team member has a busy
             schedule and we can usually meet together as four at night.</p>
         <p>We also have a facebook chat where each group member can discuss any aspect of the project. Also, to ask any
@@ -247,15 +275,17 @@
         <p>We also used an online project management tool called Trello. This was mainly used to keep everyone up to
             date with tasks that need to be completed. Also, it allows members to work on the project on their own time
             because they know what to do without calling a meeting.</p>
-        <h1>Week 1 on Trello</h1>
+        <h3>Week 1 on Trello</h3>
         <a><img src="images/week1.png"></a>
 
 
-        <h1>Week 4 on Trello</h1>
+        <h3>Week 4 on Trello</h3>
         <a><img src="images/week4.png"></a>
-        <h1>Week 6 on Trello</h1>
+        <h3>Week 6 on Trello</h3>
         <a><img src="images/week6.png"></a>
     </div>
+
+
 </section>
 </body>
 </html>
