@@ -258,7 +258,7 @@ var app = (function () {
 
 
         emulator.clearScreen();
-        emulator.wait(emulator.drawbackImage(data[i].images), 200)
+        emulator.wait(emulator.drawbackImage(data[i].images), 200);
 
 
     }
@@ -459,17 +459,18 @@ var app = (function () {
 
         emulator.wait(function () {
             emulator.drawbackImage('images/travel.jpg');
-
             emulator.draw(20, 70, menu.width, menu.height, menu.color);
             writemessage(20, 90, menu.message, menu.width);
         }, 1000);
-
 
     }
 
     function loadImg() {
         var i, j;
         var db = [ac, pu, en];
+        emulator.drawbackImage("images/ac.jpg");
+        emulator.drawbackImage("images/en.jpg");
+        emulator.drawbackImage("images/rest.jpg");
         for (i = 0; i < db.length; i++) {
             for (j = 0; j < db[i].length; j++) {
                 if (db[i][j].images != null) {
@@ -477,19 +478,19 @@ var app = (function () {
                 }
             }
         }
-        emulator.drawbackImage("images/ac.jpg");
-        emulator.drawbackImage("images/en.jpg");
-        emulator.drawbackImage("images/rest.jpg");
+
         emulator.drawbackImage('images/travel.jpg');
 
 
-        emulator.wait(start(),500);
+
 
     }
 
     pub.setup = function () {
         emulator.mouseeventtrigger(app.mousecallback);
         loadImg();
+
+        start();
 
 
     };
