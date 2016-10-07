@@ -219,10 +219,13 @@
             to other applications needing to display other shapes other than a circle. We thought that an Emulator being able to provide draw services to an application a basic
             feature. Therefore, the fact that this emulator did not provide a general draw service meant that the effort and time spent porting our Application to the Emulator
             difficult and long.
+
+            However other draw functions present in the emulator made the porting process a little easier. 
+            For example, the fillArc, setupText, fillText, translate functions present were used to draw and display objects, text and shapes but not images. We also used their getPosition function worked well and which we used in the final process of porting.
         </p>
 
         <p> The way the Emulator registers user clicks and events were too specific to their
-            application's needs. For example, there was a method named toggleClock,which displays a clock on mouse click. We could not find a way to use these mouse event functions in the emulator to work with our application. 
+            application's needs. For example, there was a method named toggleClock,which displays a clock on mouse click. We could not find a way to use these mouse event functions in the emulator to work with our application.
             The fact that the emulator could not provide a general way to provide a mouse event callback or register user events to be extremely disappointing.
             Also the way the emulator structure was set up did not allow for any user interaction to occur. We expect a proper emulator that can wrap a function from the application and call it when certain trigger is activated at the very minimum.
             For example, it does not provide a wrapping function for call-back, therefore we have to check the mouse event periodically with "setInterval" function from JavaScript.
@@ -238,8 +241,8 @@
     </p>
 
         </p>
-        <ul>
-            <li><h4>Codes Analysis</h4></li>
+      
+            <h4>Codes Analysis</h4>
             <ul>
                 <li>getImageData:This method returns data of the image and can put it onto a data structure like an array.But, the emulator does not provide a way to draw images. </li>
 
@@ -273,17 +276,8 @@
 
                 <li>drawLine: draw line from (0,0) to (0,-length) with defined width. This method will erase previous lines and draw a new one</li>
 
-              
-            </ul>
 
-
-            <p>
-
-            <li><h4>Code Quality</h4></li>
-
-            <p>
-                We appreciated the fact that the code present in the emulator did not have any bugs. Each function provided worked.Also, the code present in the emulator can provide some basic draw functionalities. For example, the fillArc, setupText, fillText, translate functions present were used to draw and display objects, text and shapes but not images. We also their getPosition function worked well and which we used in the final process of porting.
-            </p>
+          
         </ul>
     </div>
     <div id = "Conclusion">
