@@ -222,7 +222,7 @@
         </p>
 
         <p> The way the Emulator registers user clicks and events were too specific to their
-            application's needs. We could not find a way to use these mouse event functions in the emulator to work with our application.
+            application's needs. For example, there was a method named toggleClock,which displays a clock on mouse click. We could not find a way to use these mouse event functions in the emulator to work with our application. 
             The fact that the emulator could not provide a general way to provide a mouse event callback or register user events to be extremely disappointing.
             Also the way the emulator structure was set up did not allow for any user interaction to occur. We expect a proper emulator that can wrap a function from the application and call it when certain trigger is activated at the very minimum.
             For example, it does not provide a wrapping function for call-back, therefore we have to check the mouse event periodically with "setInterval" function from JavaScript.
@@ -230,13 +230,13 @@
 
         <p>
             In general, the fact that the given Emulator could not provide these two basic services to our Application made the process of porting difficult and complex. To us, a good Emulator would have at least provided
-            us these two services with some documentation and commenting. 
+            us these two services with some documentation and commenting.
         </p>
-        
+
         <p>
-            There weren't any functions in the Emulator that made us "wow". We honestly thought that this group did not put a lot of effort in developing an Emulator and an Application. 
+            There weren't any functions in the Emulator that made us "wow". We honestly thought that this group did not put a lot of effort in developing an Emulator and an Application.
     </p>
-       
+
         </p>
         <ul>
             <li><h4>Codes Analysis</h4></li>
@@ -273,17 +273,12 @@
 
                 <li>drawLine: draw line from (0,0) to (0,-length) with defined width. This method will erase previous lines and draw a new one</li>
 
-                <li>Conclusion:
-                    drawLine,FillText,Translate,Rotate, drawGradient,createGradient,toggleClock,etc serve the purpose of
-                    drawing an analog clock. The emulator is to specific to display a clock. We think that the team that have developed the emulator did not properly separate emulator and application functions. We could easily guess what their application
-                    was supposed to do because the emulator was very specific in providing services and was not very generalized. For example, there was a method named toggleClock,which displays a clock on mouse click.
-
-                </li>
+              
             </ul>
-            
+
 
             <p>
-               
+
             <li><h4>Code Quality</h4></li>
 
             <p>
