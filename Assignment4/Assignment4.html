@@ -83,14 +83,14 @@
         <ul>
             <li>How well does the Travel Application port to the new Emulator using the middle layer?</li>
             <li>What is the overall performance of the Travel Application in responding to user events?</li>
-            <li>How does the application behave?</li> //Answer is terrible.
+            <li>How does the application behave?</li>
             <li>How far has the application progressed and developed using functions provided by the new Emulator? This question can be answered by how well the following questions are answered.</li>
             <ul>
                 <li>Can the menu display work well on the application?</li>
                 <li>Can the application respond correctly to user click events?</li>
                 <li>Can the location details be displayed as expected?</li>
                 <li>Can the images of the Travel Application be displayed correctly?</li>
-                 //(Answer is 10%)
+
             </ul>
             <li>Were there any functions in the new Emulator that was used by the Application that enhanced its purpose?</li>
         </ul>
@@ -131,7 +131,7 @@
         circle to represent the original swipe functionality in our application. For example, swiping left originally meant that the user can access the previous page of the application. Swiping down meant that
         the user can access location details. In the process of porting the Travel Application, on click of the leftmost circle will allow the user to access the previous page of the application. Clicking of the rightmost
             circle allowed the user to access ? . Clicking the bottom-most circle allowed access to location details.
-            Since the original emulator did not provide any callback functionality, Frank had to write code that checks mouse events from time to time.
+            Since the original emulator did not provide any callback functionality, Frank had write a time interval function in the middle layer that checks user click every 0.5 seconds.
         </p>
 
         <p>
@@ -139,7 +139,7 @@
             of services offered by the Emulator meant that the Middle layer doubled its complexity and length.
         </p>
 
-        <h2>Ease of drawing images and shapes</h2>
+        <h2>Ease of drawing shapes</h2>
         <p>
             Unfortunately, the new Emulator can only provide functions and services that can draw and fill circles. The lack of drawing rectangles meant that we could not display the original menu layout which
             used rectangle menu buttons. The emulator cannot also provide positioning services to the application by accepting x and y coordinates from the Application. Therefore, we found displaying a menu to the user difficult.
@@ -161,20 +161,27 @@
             Overall, we found porting the menu layout to the new Emulator difficult, confusing and tedious.
         </p>
 
+        <h2>Ease of displaying images</h2>
+        <p>
+            The new Emulator does not provide a way to display images on a Canvas. This meant that all the associated images in the Travel Application cannot be easily displayed using services provided by the Emulator.
+            Since displaying images is an integral part of the Travel Application, we found that we cannot give up on this functionality. We extended our middle layer with functions that were originally present
+            in the original emulator that the travel application was developed in. In this way, we can display the images from the application.
+        </p>
+
         <h2>Porting Google Maps</h2>
         <p>
             As expected the emulator did not provide any DOM support and Google Maps API. Therefore, we have given up on porting and displaying Google Maps in our Travel Application after the user has made a decision
-            on location. 
+            on location. We found displaying Google Maps in the new Emulator without any DOM support and Google Maps API close to impossible unless we add in all the functions originally present in the original Emulator
+            to the middle layer.
+
+        </p>
+        <p>
+            However we found that we could not fully give up on using the Google Maps API. Calculating distances using the Google Maps API (specifically the distance geolocation matrix) is an integral part of the Travel
+            Application's purpose. The Travel Application would need to provide locations to the user using the specified distances. Therefore we added to the middle layer, the distance matrix calculations to be used
+            by the Travel Application. Since this just meant copying and pasting the original functions to the middle layer which we found easy and straightforward. 
         </p>
 
 
-            <li><h4>no support for DOM operation</h4></li>
-            <p> Our app could display googlemap with the help of DOM operation functions present in our original emulator. With the given emulator, we have to trim this functionality because we cannot modify the DOM and display Google Maps.
-            </p>
-            <li><h4> no support for painting images on canvas</h4></li>
-            <p>
-                Our app requires image display on canvas. However, there is no such method in the given emulator. We should extend this function as it is important to our TravelApp.
-            </p>
 
             <li><h4>Unable to fully port the application to emulator</h4></li>
             <p>
