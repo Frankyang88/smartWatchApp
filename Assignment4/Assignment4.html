@@ -23,7 +23,6 @@
         </p>
     </div>
 
-
     <div>
         <h1>Porting Schedule</h1>
         <h2>August 24</h2>
@@ -130,7 +129,7 @@
 <p> To make up for the lack of user click event services and swipe event services, Frank and Junyu came up with drawing circles using the draw circle functions present in the new Emulator to draw four circles in each side of the frame. Mouse click events are registered on each
         circle to represent the original swipe functionality in our application. For example, swiping left originally meant that the user can access the previous page of the application. Swiping down meant that
         the user can access location details. In the process of porting the Travel Application, on click of the leftmost circle will allow the user to access the previous page of the application. Clicking of the rightmost
-            circle allowed the user to access ? . Clicking the bottom-most circle allowed access to location details.
+            circle allowed the application to display the voucher display details. Clicking the bottom-most circle allowed access to location details.
             Since the original emulator did not provide any callback functionality, Frank had write a time interval function in the middle layer that checks user click every 0.5 seconds.
         </p>
 
@@ -146,7 +145,7 @@
         </p>
 
         <p>
-            In the end, the middle layer (?) had to draw several, small circles positioned very close to each other and which lay in a horizontal line. This was our way of porting the menu layout to the new Emulator.
+            In the end, the middle layer had to draw several, small circles positioned very close to each other and which lay in a horizontal line. This was our way of porting the menu layout to the new Emulator.
             We found this porting process to be tedious and inelegant. The menu display of the application does not look the way it was meant to be.
         </p>
 
@@ -178,7 +177,8 @@
         <p>
             However we found that we could not fully give up on using the Google Maps API. Calculating distances using the Google Maps API (specifically the distance geolocation matrix) is an integral part of the Travel
             Application's purpose. The Travel Application would need to provide locations to the user using the specified distances. Therefore we added to the middle layer, the distance matrix calculations to be used
-            by the Travel Application. Since this just meant copying and pasting the original functions to the middle layer which we found easy and straightforward.
+            by the Travel Application. Since this just meant copying and pasting the original functions to the middle layer which we found easy and straightforward. We also had to hard-code the Dunedin's location in the
+            application which we thought defeated the purpose of porting. However, we found this step to be necessary if we wanted the process of porting to be successful.
         </p>
                 <img src='images/circle.png'>
 
@@ -220,7 +220,7 @@
             feature. Therefore, the fact that this emulator did not provide a general draw service meant that the effort and time spent porting our Application to the Emulator
             difficult and long.
 
-            However other draw functions present in the emulator made the porting process a little easier. 
+            However other draw functions present in the emulator made the porting process a little easier.
             For example, the fillArc, setupText, fillText, translate functions present were used to draw and display objects, text and shapes but not images. We also used their getPosition function worked well and which we used in the final process of porting.
         </p>
 
@@ -241,7 +241,7 @@
     </p>
 
         </p>
-      
+
             <h4>Codes Analysis</h4>
             <ul>
                 <li>getImageData:This method returns data of the image and can put it onto a data structure like an array.But, the emulator does not provide a way to draw images. </li>
@@ -277,14 +277,17 @@
                 <li>drawLine: draw line from (0,0) to (0,-length) with defined width. This method will erase previous lines and draw a new one</li>
 
 
-          
+
         </ul>
     </div>
     <div id = "Conclusion">
         <h3>Conclusion</h3>
         <ul>
             <p>Here is our <a href="index.html" >TravelApp</a>. </p>
-            <p>We build a middle layer that wrap the methods in the given emulator and extend some necessary functionalities. And some functionalities are cut to save time. This new application performs poorly when the buttons are clicked. Our porting is roughly successful as we could create buttons and react to a click event. However, the performance is worse than the original app.
+            <p>We built a middle layer that can wrap the methods in the given emulator and extend some necessary functionalities.
+                Some functionalities in the Travel Application were cut to save time.
+                The travel application performs poorly when the buttons are clicked.
+                Our porting is roughly successful as we could create buttons and react to a click event. However, the performance is worse than the original app.
 
             </p>
 
