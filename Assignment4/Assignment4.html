@@ -135,31 +135,39 @@
         </p>
 
         <p>
-            We found this process of porting to be very inefficient because it drastically reduced the Travel Application's ability to process user events and provide information to the user quickly.
+            We found this process of porting to be very inefficient because it drastically reduced the Travel Application's ability to process user events and provide information to the user quickly. The lack
+            of services offered by the Emulator meant that the Middle layer doubled its complexity and length.
         </p>
 
         <h2>Ease of drawing images and shapes</h2>
         <p>
             Unfortunately, the new Emulator can only provide functions and services that can draw and fill circles. The lack of drawing rectangles meant that we could not display the original menu layout which
-            used rectangle menu buttons. The emulator cannot also provide positioning services to the application by accepting x and y coordinates from the Application.
+            used rectangle menu buttons. The emulator cannot also provide positioning services to the application by accepting x and y coordinates from the Application. Therefore, we found displaying a menu to the user difficult.
         </p>
-        <ul>
-            <li><h4> No interface for drawing rectangle</h4></li>
-            <p>
-                In our original emulator, there is a method that draw rectangles on canvas, whereas the
-                given one has not such a functionality. This lead to troubles when we would like to draw a button.
-                Here is an alternative solution. There is a method which could draw circles in the given emulator.
-                Therefore, we draw several circles in a horizontal line, which seems to be a rectangle.
-            </p>
 
-            <li><h4>insufficient supports for mouse events</h4></li>
-            <p>
-                There is one mousedown event. <br>
-                Compared to our emulator, it cannot indicate swipe left/right and swipe up/down.
-                Here is an alternative solution. We draw four "circle" buttons that indicate these mouse events.<br>
-                Mouse down event is registered in the emulator. And their app may not use callbacks. We could not maintain our original design, which passes the app methods to the emulator. Alternative solution is to check the mouse down position from time to time.
-                This solution shows  drawbacks that the mouse click appears to be awkward.
-            </p>
+        <p>
+            In the end, the middle layer (?) had to draw several, small circles positioned very close to each other and which lay in a horizontal line. This was our way of porting the menu layout to the new Emulator.
+            We found this porting process to be tedious and inelegant. The menu display of the application does not look the way it was meant to be.
+        </p>
+
+        <h2>Displaying text</h2>
+        <p>
+            We found our problem of porting and displaying a menu layout were further compounded by the text display functions provided by the new Emulator. We found that the Emulator displayed text colour and shape colour to be
+            exactly the same. We could not change the text colour to be different just by using the functions provided in the Emulator.  This meant that text could not be easily seen when the menu buttons are drawn behind it.
+            Therefore we had to add more functions in the middle layer to allow for text to be seen in the menu layout.
+        </p>
+
+        <p>
+            Overall, we found porting the menu layout to the new Emulator difficult, confusing and tedious.
+        </p>
+
+        <h2>Porting Google Maps</h2>
+        <p>
+            We expected not to find any DOM support and Google Maps API in the new Emulator. Therefore, we added all the original DOM services and Google Maps API in the middle layer that were originally present in
+            the emulator that the Travel Application was developed on. Since we kept our expectations low 
+        </p>
+
+
             <li><h4>no support for DOM operation</h4></li>
             <p> Our app could display googlemap with the help of DOM operation functions present in our original emulator. With the given emulator, we have to trim this functionality because we cannot modify the DOM and display Google Maps.
             </p>
@@ -167,10 +175,7 @@
             <p>
                 Our app requires image display on canvas. However, there is no such method in the given emulator. We should extend this function as it is important to our TravelApp.
             </p>
-            <li><h4> fill style for drawing circles and text</h4></li>
-            <p>
-                The fill style of text and circle is the same color. That means the given interface is not intended for drawing a button on canvas. So when I find I am able to draw a round button, the terrible thing is that the color of text on the ‘button’ is the same as button itself. As a result, we have to make an extension which could change the fillstyle for texts and buttons.
-            </p>
+
             <li><h4>Unable to fully port the application to emulator</h4></li>
             <p>
                 Due to the limited functionalities in the given emulator, we are unable to fully port the application to emulator. <br></p>
