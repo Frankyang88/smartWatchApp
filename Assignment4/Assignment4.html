@@ -178,26 +178,11 @@
         <p>
             However we found that we could not fully give up on using the Google Maps API. Calculating distances using the Google Maps API (specifically the distance geolocation matrix) is an integral part of the Travel
             Application's purpose. The Travel Application would need to provide locations to the user using the specified distances. Therefore we added to the middle layer, the distance matrix calculations to be used
-            by the Travel Application. Since this just meant copying and pasting the original functions to the middle layer which we found easy and straightforward. 
+            by the Travel Application. Since this just meant copying and pasting the original functions to the middle layer which we found easy and straightforward.
         </p>
-
-
-
-            <li><h4>Unable to fully port the application to emulator</h4></li>
-            <p>
-                Due to the limited functionalities in the given emulator, we are unable to fully port the application to emulator. <br></p>
-            <ul>
-                <li>Application click reaction time is much slower than our original version.</li>
-                <p>Due to the missing call-back function in the given emulator, we have to use a time interval function in the middle layer that checks user click every 0.5 second.</p>
-                <li>We have to change the watch frame from rectagle to circle as shown below:</li>
                 <img src='images/circle.png'>
-                <li>There is not geolocation distance calculation function provided in the given emulator.</li>
-                <p>This is a crucial function in our application, therefore we will implement this function in the middle layer to provide the service to the application. For example, we included the matrix distance function in the middle layer that is missing from the given emulator.</p>
-                <li>The given emulator does not provide GPS location.</li>
-                <p>Since the GPS location service is not provided in the given emulator, we hard coded the GPS location in our application in order for the porting process to proceed.</p>
 
-            </ul>
-        </ul>
+
 
 
     </div>
