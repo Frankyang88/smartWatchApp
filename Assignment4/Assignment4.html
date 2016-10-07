@@ -125,9 +125,9 @@
         <p>We found early on in the porting process that the new Emulator did not provide a callback service for mouse events to the application. Also we found registering click events to be very limited.
         For example, the new Emulator only registered click events to show the application on click. This made developing the Middle Layer to provide user click events more complex and difficult.
 
-        However we expected not to find user swipe events and as expected, the new Emulator did not provide this service.
-
-        Frank and Junyu came up with drawing circles using the draw circle functions present in the new Emulator to draw four circles in each side of the frame. Mouse click events are registered on each
+        However we did expect not to find user swipe events.
+            </p>
+<p> To make up for the lack of user click event services and swipe event services, Frank and Junyu came up with drawing circles using the draw circle functions present in the new Emulator to draw four circles in each side of the frame. Mouse click events are registered on each
         circle to represent the original swipe functionality in our application. For example, swiping left originally meant that the user can access the previous page of the application. Swiping down meant that
         the user can access location details. In the process of porting the Travel Application, on click of the leftmost circle will allow the user to access the previous page of the application. Clicking of the rightmost
             circle allowed the user to access ? . Clicking the bottom-most circle allowed access to location details.
