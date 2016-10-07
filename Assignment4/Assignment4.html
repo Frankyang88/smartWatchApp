@@ -1,209 +1,275 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="css/COSC345.css">
+<link rel="stylesheet" type="text/css" href="COSC345.css">
 <meta charset="UTF-8">
 <title> COSC345 Assignment 4 </title>
 <body>
 
 
-<section class="content">
-    <header>
-        <h1>COSC345 PROJECT REPORT</h1>
-        <b> maintaned by The Perfect Work Team </b>
-    </header>
-    <div id="team_members">
+<div>
+    <h1>The experience of porting the Travel Application a new Emulator</h1>
+    <p> Junyu Zhu, Alycia Ng, Ana Baltazar and Jialin Yang</p>
+    </div>
 
-        <h3> Team Members </h3>
-
-        <h4> Junyu Zhu : 9475415</h4>
-
-        <h4> Alycia Ng : 8170944</h4>
-
-        <h4> Ana Baltazar : 7002399</h4>
-
-        <h4> Jialin Yang : 7674607</h4>
-
+    <div>
+        <h1>Introduction</h1>
+        <p> An emulator that provides the exact programming constructs, global variables and function calls that our Travel Application
+        has made will translate into a 100% porting success. To expect an Emulator that mirrors the same Emulator environment that our Travel Application has been developed
+        on, is unrealistic. Having a new Emulator that can provide a basic implementation of Google Maps API, a basic draw functionality using the Canvas API,
+         mouse clicking events and text display support will result in minimal porting effort. Also, having an Emulator that does not have any third-party libraries,
+            Javascript frameworks or Javascript conversion like TypeScript and Dart will make the porting process easier. In this task, we will be porting our Travel
+            Application to a new Emulator. We will measure the ease of porting our Travel Application to the new Emulator by the complexity of the middleware and how the Travel Application
+            behaves in the new Emulator environment.
+        </p>
     </div>
 
 
-    <div id="Plan and Estimation">
-        <h1><b>Plan and Estimation</b></h1>
-        
-        <h3>Schedule(due : August 25th)</h3>
+    <div>
+        <h1>Porting Schedule</h1>
+        <h2>August 24</h2>
+        <p><b>First Meeting</b></p>
+        <p><b>Goal: To understand the given emulator</b></p>
+
+        <p>Members will brainstorm and try to answer these questions.
         <ul>
-            <li> <h4>Five days holiday from August 19th.</h4></li>
-            <li> <h4>The first meeting(Plan and Estimation) on August 24th</h4></li>
-        
-       
-        
-        
-                <li><h4>Task allocation of porting(due : August 25th)</h4></li>
-                <p> To eficiently port the application to the given emulator, we would need to allocate tasts to group members for analysis.
-                The members would need to come up with ideas by studying the given emulator on how to port the application efficiently. This can be done by writing test cases. 
-                
-                For example Junyu will draw boxes using the functions in the emulator. For the moment, any function present in the 
-                emulator that can 'draw' will be used and tested by the members.<br>
-                    
-                Frank will produce a test case that can generate  mouse events object that we need in our app. He will come up with a 
-                solution that provides the service which is required by our TravelApp.<br>
-                    
-                Ana and Alycia will be the group technical writer, coordinator and produce documentation for the group. <br>
-                </p>
-            <li> <h4>Analysis the difficulties in porting on Oct 1st</h4></li>
-            <p> We go through the methods in the emulator and list some functionalities, which are missing compared with our emulator.</p>
-            <li><h4>  Implementing porting (Oct 2nd)</h4></li>
-            <p> 
-            We will be implementing the solutions to port our application to the emulator. We would 
-            also try and develop a middle layer.  If we can't find the exact services we need from the emulator,We will also come up with alternative solutions.        
-            </p>
-            <li> <h4>write report and documentation</h4></li>
+            <li>What third-party libraries and JavaScript frameworks did the original authors use?</li>
+            <li>What was the original development environment that the original authors used? For example, does their emulator work in all available web browsers?</li>
+            <li>Or does it only work in specific browsers like Firefox?</li>
+            <li>Does the Emulator have functions that we can use?</li>
+            <li>What are the functions in the Emulator that we cannot use? </li>
+            <li>What is the original application's behaviour on the given emulator? </li>
         </ul>
-        
+
+        If the original authors introduced themselves to us, then these questions would be answered faster. The time spent brainstorming and analysing the emulator would be lessened and the process
+        of porting would be faster. If the original authors agree to demonstrate and show us how their developed application worked on their Emulator will massively reduce the time analysing the emulator.
+        However the time spent on analysing the Emulator will take 3-4 hours if we cannot find the original authors.
+
+
+        <h2>August 25</h2>
+        <p><b>Second Meeting</b></p>
+        <p><b>Goal: Write test cases for a draw and mouse event function</b></p>
+        <p>In this meeting, the group will be split into pairs. Each pair will be given a specific task in the new emulator to write test cases for.
+        They would need to understand each function's behaviour, how to call it and what it provides to the Application. To keep expectations realistic, each pair will be given a task that we expect a basic
+            Emulator to provide. For example, we do not expect a very, basic SmartWatch Emulator to provide a Google Maps API service because not all development teams will develop a location-based application.
+            At the very least, we expect a basic implementation of an Emulator to provide function calls that can display images and register user events.
+        </p>
+         <p> Our Travel Application heavily relies on being able to display shapes, text and images using the Canvas API.
+             Therefore, Frank and Junyu will focus on finding functions in the emulator that will provide a basic draw function using the Canvas API for the Application.
+        </p>
+
+        <p> Our Travel Application expects user events like a swipe event and a button press. The Emulator that the Travel Application has been developed on would send a message on mouse events every time there is a mouseevent.
+            The given emulator is expected to provide a callback to the Application.  </p>
+        <p>Ana and Alycia are tasked with finding functions in the new Emulator that can provide functions that register mouse events and provide callbacks. To keep expectations realistic, we do
+        not expect the given Emulator to record the previous and most recent mouse location to represent a swipe by the user. They would just need to analyse how to use a function in the new Emulator that can provide
+            a way to register mouse events and communicate this to the application.
+        </p>
+        <p>Each pair will also write their section of the report and their findings. Ana will be tasked to proofread.</p>
+        <p>
+            After writing test cases, each pair should come up with an idea of how to use these functions (if found) and apply it to the middle layer. The middle layer connects the Application
+            to the new Emulator by providing a thin wrapper. It can be as simple as renaming functions to match the one called by the application.
+        </p>
+
+        <p>
+            Also it would be good if a member can find a use for every function in the new emulator that is not related to drawing a shape or registering a mouse event and apply it to the middle layer.
+        </p>
+
+        <p>We estimate the time taken to write test cases and incorporate it to the middle layer to be 3-4 hours for each pair.</p>
+
+        <h2>August 26</h2>
+        <p><b>Third Meeting</b></p>
+        <p><b>Goal: Analysis of the Middlelayer</b></p>
+        <p>At this point, the middle layer that has been developed should contain modified functions that were only present in the new Emulator. In this meeting, the group shall brainstorm together to answer these
+        questions:
+        <ul>
+            <li>How well does the Travel Application port to the new Emulator using the middle layer?</li>
+            <li>What is the overall performance of the Travel Application in responding to user events?</li>
+            <li>How does the application behave?</li> //Answer is terrible.
+            <li>How far has the application progressed and developed using functions provided by the new Emulator? This question can be answered by how well the following questions are answered.</li>
+            <ul>
+                <li>Can the menu display work well on the application?</li>
+                <li>Can the application respond correctly to user click events?</li>
+                <li>Can the location details be displayed as expected?</li>
+                <li>Can the images of the Travel Application be displayed correctly?</li>
+                 //(Answer is 10%)
+            </ul>
+            <li>Were there any functions in the new Emulator that was used by the Application that enhanced its purpose?</li>
+        </ul>
+
+        The group should then come up with a plan to incorporate functions from the old emulator to the middle layer to make up for missing functions that the application needs to work properly.
+
+        <p>We estimate the time taken by this analysis to be 2-3 hours long. Implementing missing functions to the middle layer should be an additional 1-2 hours.</p>
+
+        <h2>September 5</h2>
+        <p><b>Fourth Meeting</b></p>
+        <p><b>Goal: Testing Middle Layer</b></p>
+        <p>In this meeting, we will test the middle layer and make sure that it is free of bugs. The functions present in the middle layer that were originally present in the old emulator will be
+        a measure of how successful the porting is. In general, the more functions present in the middle layer that were originally present in the old emulator lessens the chance of achieving a successful
+        port.
+        </p>
+
+        <p>This meeting can also be used to finish incorporating functions from the previous emulator if the members ran out of time in the previous meeting.</p>
+        <p>We estimate the time taken for this meeting to be completed is 3-4 hours.</p>
+
+
     </div>
 
-    <div id="Analysis of difficulties">
-        <h3>Analysis of difficulties</h3>
+    <div>
+        <h1>Analysis of Difficulties</h1>
+        <h2>Ease of understanding the Emulator</h2>
+        <p>The given Emulator did not use third-party Javascript libraries or frameworks. Therefore reading the functions in the Emulator were relatively intuitive
+            and easy to understand. However, the implementation of registering click events to the application took some time to fully understand.
+            We also found understanding how they implemented several draw functions using the Canvas API challenging.
+        </p>
+
+        <h2>Using functions in the Emulator</h2>
+        <p>We found early on in the porting process that the new Emulator did not provide a callback service for mouse events to the application. Also we found registering click events to be very limited.
+        For example, the new Emulator only registered click events to show the application on click. This made developing the Middle Layer to provide user click events more complex and difficult.
+
+        However we expected not to find user swipe events and as expected, the new Emulator did not provide this service.
+
+        Frank and Junyu came up with drawing circles using the draw circle functions present in the new Emulator to draw four circles in each side of the frame. Mouse click events are registered on each
+        circle to represent the original swipe functionality in our application. For example, swiping left originally meant that the user can access the previous page of the application. Swiping down meant that
+            the user can access location details. In the process of porting the Travel Application, on click of the leftmost circle will allow the user to access the previous page of the application. 
+
+        We found that developing a middle layer that will draw four "circles" on each side of the frame
+
+        </p>
         <ul>
-        <li><h4> No interface for drawing rectangle</h4></li>
-        <p>
-            In our original emulator, there is a method that draw rectangles on canvas, whereas the 
-            given one has not such a functionality. This lead to troubles when we would like to draw a button.
-            Here is an alternative solution. There is a method which could draw circles in the given emulator. 
-            Therefore, we draw several circles in a horizontal line, which seems to be a rectangle.  
-        </p>
-        
-        <li><h4>insufficient supports for mouse events</h4></li>
-        <p>
-            There is one mousedown event. <br>
-            Compared to our emulator, it cannot indicate swipe left/right and swipe up/down.     
-            Here is an alternative solution. We draw four "circle" buttons that indicate these mouse events.<br>
-            Mouse down event is registered in the emulator. And their app may not use callbacks. We could not maintain our original design, which passes the app methods to the emulator. Alternative solution is to check the mouse down position from time to time.
-            This solution shows  drawbacks that the mouse click appears to be awkward.
-        </p>
-        <li><h4>no support for DOM operation</h4></li>
-        <p> Our app could display googlemap with the help of DOM operation functions present in our original emulator. With the given emulator, we have to trim this functionality because we cannot modify the DOM and display Google Maps.
-        </p>   
-        <li><h4> no support for painting images on canvas</h4></li>
-        <p>
-            Our app requires image display on canvas. However, there is no such method in the given emulator. We should extend this function as it is important to our TravelApp. 
-        </p>
-        <li><h4> fill style for drawing circles and text</h4></li>
-        <p>
-            The fill style of text and circle is the same color. That means the given interface is not intended for drawing a button on canvas. So when I find I am able to draw a round button, the terrible thing is that the color of text on the ‘button’ is the same as button itself. As a result, we have to make an extension which could change the fillstyle for texts and buttons.
-        </p>
+            <li><h4> No interface for drawing rectangle</h4></li>
+            <p>
+                In our original emulator, there is a method that draw rectangles on canvas, whereas the
+                given one has not such a functionality. This lead to troubles when we would like to draw a button.
+                Here is an alternative solution. There is a method which could draw circles in the given emulator.
+                Therefore, we draw several circles in a horizontal line, which seems to be a rectangle.
+            </p>
+
+            <li><h4>insufficient supports for mouse events</h4></li>
+            <p>
+                There is one mousedown event. <br>
+                Compared to our emulator, it cannot indicate swipe left/right and swipe up/down.
+                Here is an alternative solution. We draw four "circle" buttons that indicate these mouse events.<br>
+                Mouse down event is registered in the emulator. And their app may not use callbacks. We could not maintain our original design, which passes the app methods to the emulator. Alternative solution is to check the mouse down position from time to time.
+                This solution shows  drawbacks that the mouse click appears to be awkward.
+            </p>
+            <li><h4>no support for DOM operation</h4></li>
+            <p> Our app could display googlemap with the help of DOM operation functions present in our original emulator. With the given emulator, we have to trim this functionality because we cannot modify the DOM and display Google Maps.
+            </p>
+            <li><h4> no support for painting images on canvas</h4></li>
+            <p>
+                Our app requires image display on canvas. However, there is no such method in the given emulator. We should extend this function as it is important to our TravelApp.
+            </p>
+            <li><h4> fill style for drawing circles and text</h4></li>
+            <p>
+                The fill style of text and circle is the same color. That means the given interface is not intended for drawing a button on canvas. So when I find I am able to draw a round button, the terrible thing is that the color of text on the ‘button’ is the same as button itself. As a result, we have to make an extension which could change the fillstyle for texts and buttons.
+            </p>
             <li><h4>Unable to fully port the application to emulator</h4></li>
-        <p>
-            Due to the limited functionalities in the given emulator, we are unable to fully port the application to emulator. <br></p>
+            <p>
+                Due to the limited functionalities in the given emulator, we are unable to fully port the application to emulator. <br></p>
             <ul>
                 <li>Application click reaction time is much slower than our original version.</li>
                 <p>Due to the missing call-back function in the given emulator, we have to use a time interval function in the middle layer that checks user click every 0.5 second.</p>
                 <li>We have to change the watch frame from rectagle to circle as shown below:</li>
-                    <img src='images/circle.png'>
+                <img src='images/circle.png'>
                 <li>There is not geolocation distance calculation function provided in the given emulator.</li>
                 <p>This is a crucial function in our application, therefore we will implement this function in the middle layer to provide the service to the application. For example, we included the matrix distance function in the middle layer that is missing from the given emulator.</p>
                 <li>The given emulator does not provide GPS location.</li>
                 <p>Since the GPS location service is not provided in the given emulator, we hard coded the GPS location in our application in order for the porting process to proceed.</p>
-                
+
             </ul>
-           
-            
-            
-            
-        
         </ul>
-            
+
 
     </div>
 
     <div id="Critique of documentation of the given Emulator">
         <h3>Critique of documentation of the given Emulator</h3>
         <ul>
-            
+
             <li><h4>Limited documentation</h4></li>
             <p>
                 The given emulator has few comments and documentations, which are limited to our porting. Lots of efforts are spent
                 on testing their codes and checking their behaviors.For example, the drawLine method should draw a line. After several tests, we find that it would redraw a line and erase the previous one.<br>
-                In addition, there is no implications that help us to find its designer. Thus, we cannot get some details from the orginal 
+                In addition, there is no implications that help us to find its designer. Thus, we cannot get some details from the orginal
                 application and its architecture.<br>
             </p>
             <li><h4></h4></li>
         </ul>
-        
+
 
     </div>
 
-  
+
     <div id="Criques of emulator structure and code quality">
         <h3>Criques of emulator structure and code quality</h3>
         <ul>
-        <li><h4>Codes Analysis</h4></li>
-        <ul>
-            <li>getImageData:This method returns data of the image and can put it onto a data structure like an array.But, the emulator does not provide a way to draw images. </li>
+            <li><h4>Codes Analysis</h4></li>
+            <ul>
+                <li>getImageData:This method returns data of the image and can put it onto a data structure like an array.But, the emulator does not provide a way to draw images. </li>
 
-            <li>getPosition : get the coordinate of a mouse click with mousedown event. This is not a good solution to mouse events as the app has to check the mouse position from time to time. The better solution is to provide a callback in the emulator</li>
+                <li>getPosition : get the coordinate of a mouse click with mousedown event. This is not a good solution to mouse events as the app has to check the mouse position from time to time. The better solution is to provide a callback in the emulator</li>
 
-            <li>showClock: perhaps show clock</li> 
+                <li>showClock: perhaps show clock</li>
 
-            <li>StartEmulator: On setup, the emulator adds a mousedown click event listener to the canvas and a clock (which we’re assuming is the original author’s app).Translate the current origin to (160,160)</li>
-            
-            <li>getRadius: return nearly half of the canvas height</li>
-    
-            <li>AppendText: modify a html element that holds some texts. This offers a very limited interface to display texts.</li>
-    
-            <li>setupText:  set up texts format on canvas</li>
+                <li>StartEmulator: On setup, the emulator adds a mousedown click event listener to the canvas and a clock (which we’re assuming is the original author’s app).Translate the current origin to (160,160)</li>
 
-            <li>toggleClock: exchange visibility between eventText and canvas</li>
+                <li>getRadius: return nearly half of the canvas height</li>
 
-            <li>fillArc: draw a curve or circle  and fill color, this is the most useful method when we work on porting.</li>
+                <li>AppendText: modify a html element that holds some texts. This offers a very limited interface to display texts.</li>
 
-            <li>fillSect: draw a curve or circle. This is similiar to fillArc. We are not sure the purpose</li>
+                <li>setupText:  set up texts format on canvas</li>
 
-            <li>createGradient:create a radial/circular gradient</li>
+                <li>toggleClock: exchange visibility between eventText and canvas</li>
 
-            <li> drawGradient:   format the color of gradient </li>
+                <li>fillArc: draw a curve or circle  and fill color, this is the most useful method when we work on porting.</li>
 
-            <li> Rotate: rotate an angle</li>
-    
-            <li>Translate:translate the current origin to a new position</li>
-    
-            <li> FillText: draw text at position(x,y)</li>
-    
-            <li>drawLine: draw line from (0,0) to (0,-length) with defined width. This method will erase previous lines and draw a new one</li>
-            
-            <li>Conclusion: 
-                drawLine,FillText,Translate,Rotate, drawGradient,createGradient,toggleClock,etc serve the purpose of
-                drawing an analog clock. The emulator is to specific to display a clock. We think that the team that have developed the emulator did not properly separate emulator and application functions. We could easily guess what their application
-                was supposed to do because the emulator was very specific in providing services and was not very generalized. For example, there was a method named toggleClock,which displays a clock on mouse click. 
-                                
-            </li>
-        </ul>
-        <li><h4>Emulator structure</h4></li>
-        
+                <li>fillSect: draw a curve or circle. This is similiar to fillArc. We are not sure the purpose</li>
+
+                <li>createGradient:create a radial/circular gradient</li>
+
+                <li> drawGradient:   format the color of gradient </li>
+
+                <li> Rotate: rotate an angle</li>
+
+                <li>Translate:translate the current origin to a new position</li>
+
+                <li> FillText: draw text at position(x,y)</li>
+
+                <li>drawLine: draw line from (0,0) to (0,-length) with defined width. This method will erase previous lines and draw a new one</li>
+
+                <li>Conclusion:
+                    drawLine,FillText,Translate,Rotate, drawGradient,createGradient,toggleClock,etc serve the purpose of
+                    drawing an analog clock. The emulator is to specific to display a clock. We think that the team that have developed the emulator did not properly separate emulator and application functions. We could easily guess what their application
+                    was supposed to do because the emulator was very specific in providing services and was not very generalized. For example, there was a method named toggleClock,which displays a clock on mouse click.
+
+                </li>
+            </ul>
+            <li><h4>Emulator structure</h4></li>
+
             <p>
                 The given emulator was very easy to understand, simple and short. We spent close to 3-4 hours analysing and studying the code in the emulator. However, many of the functionalities that we needed to port our application to their emulator were missing. </p><p>
-                The given emulator did not use any Javascript frameworks or programming environment like Phaser.io, Typescript or Dart.
-                We did not use Dart or Typescript in our development of the emulator or application. Therefore, if the given emulator had Dart or Typescript or any other Javascript framework included, it would have taken us double the time to port our application to the Emualtor. We would have to learn these frameworks in a short period of time. 
-                Therefore porting the application to the emulator became easier. 
-            </p>
-            <p> The way the emulator structure was set up did not allow for any user interaction to occur. We expect a proper emulator that can wrap a function from the application and call it when certain trigger is activated at the very minimum. 
-                For example, it does not provide a wrapping function for call-back, therefore we have to check the mouse event periodically with "setInterval" function from JavaScript. 
-            </p>
-         <li><h4>Code Quality</h4></li>    
-                
-            <p>
-                We appreciated the fact that the code present in the emulator did not have any bugs. Each function provided worked.Also, the code present in the emulator can provide some basic draw functionalities. For example, the fillArc, setupText, fillText, translate functions present were used to draw and display objects, text and shapes but not images. We also their getPosition function worked well and which we used in the final process of porting.  
+            The given emulator did not use any Javascript frameworks or programming environment like Phaser.io, Typescript or Dart.
+            We did not use Dart or Typescript in our development of the emulator or application. Therefore, if the given emulator had Dart or Typescript or any other Javascript framework included, it would have taken us double the time to port our application to the Emualtor. We would have to learn these frameworks in a short period of time.
+            Therefore porting the application to the emulator became easier.
         </p>
-            </ul>
+            <p> The way the emulator structure was set up did not allow for any user interaction to occur. We expect a proper emulator that can wrap a function from the application and call it when certain trigger is activated at the very minimum.
+                For example, it does not provide a wrapping function for call-back, therefore we have to check the mouse event periodically with "setInterval" function from JavaScript.
+            </p>
+            <li><h4>Code Quality</h4></li>
+
+            <p>
+                We appreciated the fact that the code present in the emulator did not have any bugs. Each function provided worked.Also, the code present in the emulator can provide some basic draw functionalities. For example, the fillArc, setupText, fillText, translate functions present were used to draw and display objects, text and shapes but not images. We also their getPosition function worked well and which we used in the final process of porting.
+            </p>
+        </ul>
     </div>
     <div id = "Conclusion">
         <h3>Conclusion</h3>
         <ul>
             <p>Here is our <a href="index.html" >TravelApp</a>. </p>
             <p>We build a middle layer that wrap the methods in the given emulator and extend some necessary functionalities. And some functionalities are cut to save time. This new application performs poorly when the buttons are clicked. Our porting is roughly successful as we could create buttons and react to a click event. However, the performance is worse than the original app.
-            
+
             </p>
-            
-            
+
+
         </ul>
     </div>
 </section>
