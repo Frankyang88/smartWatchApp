@@ -121,7 +121,7 @@
             We also found understanding how they implemented several draw functions using the Canvas API challenging.
         </p>
 
-        <h2>Using functions in the Emulator</h2>
+        <h2>Ease of using mouse services</h2>
         <p>We found early on in the porting process that the new Emulator did not provide a callback service for mouse events to the application. Also we found registering click events to be very limited.
         For example, the new Emulator only registered click events to show the application on click. This made developing the Middle Layer to provide user click events more complex and difficult.
 
@@ -129,10 +129,19 @@
 
         Frank and Junyu came up with drawing circles using the draw circle functions present in the new Emulator to draw four circles in each side of the frame. Mouse click events are registered on each
         circle to represent the original swipe functionality in our application. For example, swiping left originally meant that the user can access the previous page of the application. Swiping down meant that
-            the user can access location details. In the process of porting the Travel Application, on click of the leftmost circle will allow the user to access the previous page of the application. 
+        the user can access location details. In the process of porting the Travel Application, on click of the leftmost circle will allow the user to access the previous page of the application. Clicking of the rightmost
+            circle allowed the user to access ? . Clicking the bottom-most circle allowed access to location details.
+            Since the original emulator did not provide any callback functionality, Frank had to write code that checks mouse events from time to time.
+        </p>
 
-        We found that developing a middle layer that will draw four "circles" on each side of the frame
+        <p>
+            We found this process of porting to be very inefficient because it drastically reduced the Travel Application's ability to process user events and provide information to the user quickly.
+        </p>
 
+        <h2>Ease of drawing images and shapes</h2>
+        <p>
+            Unfortunately, the new Emulator can only provide functions and services that can draw and fill circles. The lack of drawing rectangles meant that we could not display the original menu layout which
+            used rectangle menu buttons. The emulator cannot also provide positioning services to the application by accepting x and y coordinates from the Application.
         </p>
         <ul>
             <li><h4> No interface for drawing rectangle</h4></li>
